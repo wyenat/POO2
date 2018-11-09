@@ -1,5 +1,6 @@
 package io;
 import java.io.*;
+import java.util.*;
 
 public abstract class Evenement{
   protected Robot robot;
@@ -34,10 +35,12 @@ public Robot getRobot(){
 
   public void setDate(long Date){
     long dateMax = 0;
-    for (int evenement=0; evenement < simu.nb_evenements; evenement++){
-        if ( this.getRobot() == simu.Evenements[evenement].getRobot()){
-            if ( dateMax < simu.Evenements[evenement].getDate()){
-              dateMax = simu.Evenements[evenement].getDate();
+    Iterator iter = simu.Evenements.iterator();
+    while (iter.hasNext()){
+        Evenement eve = (Evenement) iter.next();
+        if ( this.getRobot() == eve.getRobot()){
+            if ( dateMax < eve.getDate()){
+              dateMax = eve.getDate();
             }
         }
     }
@@ -49,10 +52,12 @@ public Robot getRobot(){
        * Ne fait absolument rien ptdr
        */
        long dateMax = 0;
-       for (int evenement=0; evenement < simu.nb_evenements; evenement++){
-           if ( this.getRobot() == simu.Evenements[evenement].getRobot()){
-               if ( dateMax < simu.Evenements[evenement].getDate()){
-                 dateMax = simu.Evenements[evenement].getDate();
+       Iterator iter = simu.Evenements.iterator();
+       while (iter.hasNext()){
+           Evenement eve = (Evenement) iter.next();
+           if ( this.getRobot() == eve.getRobot()){
+               if ( dateMax < eve.getDate()){
+                 dateMax = eve.getDate();
                }
            }
        }
