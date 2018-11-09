@@ -63,7 +63,13 @@ public abstract class Robot {
       return this.reservoir;
     }
     public void setReservoir(int reservoir){
-      this.reservoir = reservoir;
+        if (reservoir > 0){
+            this.reservoir = reservoir;
+
+        }
+        else {
+            throw new IllegalArgumentException(" remplir par un truc négatif ça c'est erreur" + this);
+        }
     }
 
     public void setVitesse(double vitesse){

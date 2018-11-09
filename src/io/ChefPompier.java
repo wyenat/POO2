@@ -72,12 +72,13 @@ public class ChefPompier {
       */
       int reservoir = chem.getRobot().getReservoir();
       int intensite = incendie.GetIntensite();
-    //   System.out.println(chem.getDepart() + "et " +intensite + " ct INTENSE "+ reservoir);
+
       Chemin pointEau = trouverPointDeau(chem.getArrivee(), chem.getRobot());
       Case case_incendie = chem.getArrivee();
       chem.deplacement();
       while ( intensite > 0) {
 
+         System.out.println("JIOJHIOJOPBJKHIO" + reservoir);
         System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
           EvenementDeverserEau vider = new EvenementDeverserEau(simu, chem.getRobot());
           if (chem.getRobot().GetTypeRobot()==TypeRobot.PATTES){
