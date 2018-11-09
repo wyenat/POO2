@@ -1,0 +1,14 @@
+
+TODO:
+	// Evenement_deplacer ; création d'une fonction calculer_chemin qui renvoie un tableau de case de la case initiale à la case finale
+	// Pour l'instant, une seule contrainte : que le chemin soit empruntable pour le robot. A faire plus tard..
+
+
+
+
+Enguerran:
+	Evenement et ses executions
+
+
+<3Theocille<3 : j'essaie de faire fonctionner le make simulateur, pour l'instant on créé la fenêtre d'affichage dans TestSimulateur.java !
+J'ai créé DonneesSimulateur et LectureDonneesSimulateur
