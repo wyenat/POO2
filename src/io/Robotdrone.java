@@ -47,7 +47,7 @@ public class Robotdrone extends Robot{
           return 10000;
         }
         else {
-          return (intensite);
+          return intensite;
         }
       }
       return 0;

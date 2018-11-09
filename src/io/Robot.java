@@ -63,7 +63,7 @@ public abstract class Robot {
       return this.reservoir;
     }
     public void setReservoir(int reservoir){
-        if (reservoir > 0){
+        if (reservoir >= 0){
             this.reservoir = reservoir;
 
         }

@@ -44,19 +44,6 @@ public class Incendie{
   }
 
   public void draw_incendie(GUISimulator gui, int taille_case){
-      // Color rouge = Color.decode("#e74c3c");
-      // Color orange = Color.decode("#f39c12");
-      // Color jaune = Color.decode("#f1c40f");
-      //
-      // gui.addGraphicalElement(
-      //     new Oval(
-      //         taille_case/2 + this.colonne*taille_case, //abscisse milieu
-      //         taille_case/2 + this.ligne*taille_case, //ordonnee milieu
-      //         rouge,
-      //         rouge,
-      //         (taille_case*9)/10 //diamètre
-      //     )
-      //)
       if (this.GetIntensite() == 0){
         return;
       }

@@ -76,10 +76,16 @@ public class ChefPompier {
       Chemin pointEau = trouverPointDeau(chem.getArrivee(), chem.getRobot());
       Case case_incendie = chem.getArrivee();
       chem.deplacement();
-      while ( intensite > 0) {
+      if (chem.getRobot().GetTypeRobot()!=TypeRobot.PATTES && reservoir ==0){
+          pointEau.deplacement();
+          EvenementRemplirReservoir remplir = new EvenementRemplirReservoir(simu, chem.getRobot());
+          Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
+          retour.deplacement();
+      }
+      while ( intensite >= 0) {
 
          System.out.println("JIOJHIOJOPBJKHIO" + reservoir);
-        System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
+         System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
           EvenementDeverserEau vider = new EvenementDeverserEau(simu, chem.getRobot());
           if (chem.getRobot().GetTypeRobot()==TypeRobot.PATTES){
             break;
@@ -88,32 +94,28 @@ public class ChefPompier {
           intensite -= reservoir;
           pointEau.deplacement();
           EvenementRemplirReservoir remplir = new EvenementRemplirReservoir(simu, chem.getRobot());
-        //   switch(chem.getRobot().GetTypeRobot()){
-        //     case DRONE:
-        //         reservoir+=10000;
-        //         break;
-          //
-        //     case ROUES:
-        //         reservoir+= 5000;
-        //         break;
-          //
-        //     case CHENILLES:
-        //         reservoir += 2000;
-        //         break;
-        //   }
+          switch(chem.getRobot().GetTypeRobot()){
+            case DRONE:
+                reservoir+=10000;
+                break;
 
+            case ROUES:
+                reservoir+= 5000;
+                break;
 
+            case CHENILLES:
+                reservoir += 2000;
+                break;
+          }
+
+          if (intensite >0){
               Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
               retour.deplacement();
-
+          }
         //   System.out.println("LE RETOUR " + pointEau);
       }
 
 
-    if (chem.getRobot().GetTypeRobot()!=TypeRobot.PATTES ){
-        pointEau.deplacement();
-        EvenementRemplirReservoir remplir = new EvenementRemplirReservoir(simu, chem.getRobot());
-    }
 
     }
 

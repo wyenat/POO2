@@ -61,7 +61,7 @@ public Robot getRobot(){
                }
            }
        }
-    //    System.out.println("Date: " + dateMax + "temps : " + this.simu.time);
+       System.out.println("Date: " + dateMax + "temps : " + this.simu.time + " robot " + this.robot);
        if (dateMax <= this.simu.time + this.simu.pas){
           this.getRobot().setEtat(Etat.LIBRE);
        }

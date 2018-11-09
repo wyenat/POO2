@@ -24,6 +24,7 @@ public class Evenementdeplacement extends Evenement {
   }
 
   public void execute(){
+    super.execute();
     Simulateur simu = super.getSimu();
     Carte map = simu.donnees.GetCarte();
     Robot robot  = super.getRobot();
