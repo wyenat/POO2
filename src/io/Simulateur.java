@@ -49,9 +49,9 @@ public class Simulateur implements Simulable {
         /** Trouve dans la liste des évènements ceux dont la date est passée,
          * et les execute
          */
-         Iterator iter = Evenements.iterator();
+         Iterator<Evenement> iter = Evenements.iterator();
          while(iter.hasNext()){
-             Evenement eve = (Evenement) iter.next();
+             Evenement eve = iter.next();
              if (this.time <= eve.getDate() &  eve.getDate() < this.time + this.pas){
                 System.out.println(eve);
                 eve.execute();
@@ -70,10 +70,10 @@ public class Simulateur implements Simulable {
         /**
          * Affiche les Evenements dans le tableau d'évènements
          */
-         Iterator iter = Evenements.iterator();
+         Iterator<Evenement> iter = Evenements.iterator();
          int i=0;
          while (iter.hasNext()){
-            Evenement eve = (Evenement) iter.next();
+            Evenement eve = iter.next();
             System.out.println(i +  " : " + eve);
             i++;
          }
@@ -83,9 +83,9 @@ public class Simulateur implements Simulable {
         /**
          * Retourne true s'il n'y a plus d'évènements en cours
          */
-         Iterator iter = Evenements.iterator();
+         Iterator<Evenement> iter = Evenements.iterator();
          while (iter.hasNext()){
-             Evenement eve = (Evenement) iter.next();
+             Evenement eve = iter.next();
              if (this.time <= eve.getDate()){
                  return false;
              }
@@ -104,7 +104,6 @@ public class Simulateur implements Simulable {
        else{
           this.time += this.pas;
         //   System.out.println("time = " + this.time);
-        //   System.out.println(this.donnees.GetRobots()[2].getEtat());
           executeEvenements();
           draw();
       }

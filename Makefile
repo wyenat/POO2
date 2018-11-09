@@ -57,7 +57,7 @@ chemmush:
 
 chemspi:
 	javac -d bin -classpath bin/gui.jar -Xlint -sourcepath src src/TestChemin.java
-	java -classpath bin:bin/*  TestChemin cartes/spiralOfMadness-50x50.map
+	java -classpath bin:bin/*  TestChemin cartes/mushroomOfHell-20x20.map
 
 chef:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestChefPompier.java

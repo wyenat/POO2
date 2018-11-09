@@ -35,9 +35,9 @@ public Robot getRobot(){
 
   public void setDate(long Date){
     long dateMax = 0;
-    Iterator iter = simu.Evenements.iterator();
+    Iterator<Evenement> iter = simu.Evenements.iterator();
     while (iter.hasNext()){
-        Evenement eve = (Evenement) iter.next();
+        Evenement eve = iter.next();
         if ( this.getRobot() == eve.getRobot()){
             if ( dateMax < eve.getDate()){
               dateMax = eve.getDate();
@@ -52,9 +52,9 @@ public Robot getRobot(){
        * Ne fait absolument rien ptdr
        */
        long dateMax = 0;
-       Iterator iter = simu.Evenements.iterator();
+       Iterator<Evenement> iter = simu.Evenements.iterator();
        while (iter.hasNext()){
-           Evenement eve = (Evenement) iter.next();
+           Evenement eve = iter.next();
            if ( this.getRobot() == eve.getRobot()){
                if ( dateMax < eve.getDate()){
                  dateMax = eve.getDate();

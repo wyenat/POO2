@@ -9,9 +9,9 @@ public class TestChefPompier{
           // Mise en place de la simulation.
           Simulateur simu = new Simulateur(LecteurDonnees.lire(args[0]));
           ChefPompier Enguerran = new ChefPompier(simu);
-        //   Enguerran.proposer_incendie_naif();
+          Enguerran.proposer_incendie_naif();
 
-        Enguerran.extinction();
+        // Enguerran.extinction();
     }
           // Partie levée d'exception
           catch (FileNotFoundException e) {
