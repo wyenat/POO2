@@ -2,7 +2,7 @@ package io;
 
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
-
+import java.util.*;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,8 +21,7 @@ public class Simulateur implements Simulable {
     public int pas;
     public int time;
 
-    public Evenement[] Evenements = new Evenement[1000000];
-    public int nb_evenements;
+    public LinkedList<Evenement> Evenements = new LinkedList<Evenement>();
     public Case[] positions;
 
     public GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
@@ -34,7 +33,6 @@ public class Simulateur implements Simulable {
         this.donnees = data;
         this.time = 0;
         this.pas = 1 + this.donnees.GetCarte().GetTailleCases()/500;
-        this.nb_evenements = 0;
         this.positions = new Case[this.donnees.GetRobots().length];
         for (int i =0; i<this.donnees.GetRobots().length; i++){
             int lig = this.donnees.GetRobots()[i].GetLigne();
@@ -49,10 +47,12 @@ public class Simulateur implements Simulable {
         /** Trouve dans la liste des évènements ceux dont la date est passée,
          * et les execute
          */
-         for (int i=0; i<nb_evenements; i++){
-             if (this.time <= this.Evenements[i].getDate() &  this.Evenements[i].getDate() < this.time + this.pas){
-                System.out.println(this.Evenements[i]);
-                this.Evenements[i].execute();
+         Iterator iter = Evenements.iterator();
+         while(iter.hasNext()){
+             Evenement eve = (Evenement) iter.next();
+             if (this.time <= eve.getDate() &  eve.getDate() < this.time + this.pas){
+                System.out.println(eve);
+                eve.execute();
              }
          }
     }
@@ -61,16 +61,19 @@ public class Simulateur implements Simulable {
         /**
          * Ajoute un évènement
          */
-         this.Evenements[nb_evenements] = e;
-         this.nb_evenements++;
+         this.Evenements.add(e);
     }
 
     public void AfficherEvenements(){
         /**
          * Affiche les Evenements dans le tableau d'évènements
          */
-         for (int i=0; i<nb_evenements; i++){
-            System.out.println(i +  " : " + this.Evenements[i].toString());
+         Iterator iter = Evenements.iterator();
+         int i=0;
+         while (iter.hasNext()){
+            Evenement eve = (Evenement) iter.next();
+            System.out.println(i +  " : " + eve);
+            i++;
          }
     }
 
@@ -78,12 +81,14 @@ public class Simulateur implements Simulable {
         /**
          * Retourne true s'il n'y a plus d'évènements en cours
          */
-         for (int i=0; i<nb_evenements; i++){
-             if (this.time <= this.Evenements[i].getDate()){
+         Iterator iter = Evenements.iterator();
+         while (iter.hasNext()){
+             Evenement eve = (Evenement) iter.next();
+             if (this.time <= eve.getDate()){
                  return false;
              }
          }
-         return false;
+         return true;
     }
 
     @Override
@@ -109,16 +114,12 @@ public class Simulateur implements Simulable {
        * Replace la simulation dans les conditions initiales
        */
       this.time = 0;
-      int sauvegarde_nb_evenements = this.nb_evenements;
     //   Evenement[] sauvegarde_evenements = Evenements;
       try{
         //   System.out.println("##########AVANT RESET########");
         //   AfficherEvenements();
           DonneesSimulation data_init = LecteurDonnees.lire(this.donnees.fichier);
           this.donnees.RemettreInitial(data_init);
-        //   System.out.println(this.nb_evenements);
-          this.nb_evenements = sauvegarde_nb_evenements;
-        //   System.out.println(this.nb_evenements);
         // System.out.println("##########APRES RESET########");
         AfficherEvenements();
         //   this.Evenements = sauvegarde_evenements;
