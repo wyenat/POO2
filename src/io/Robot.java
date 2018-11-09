@@ -18,7 +18,7 @@ public abstract class Robot {
   private int ligne;
   private int colonne;
   private double vitesse_deplacement;
-  private int reservoir;
+  private double reservoir;
   private TypeRobot type;
   private Etat etat;
 
@@ -59,10 +59,10 @@ public abstract class Robot {
       return this.vitesse_deplacement;
     }
 
-    public int getReservoir(){
+    public double getReservoir(){
       return this.reservoir;
     }
-    public void setReservoir(int reservoir){
+    public void setReservoir(double reservoir){
         if (reservoir >= 0){
             this.reservoir = reservoir;
 
@@ -169,7 +169,7 @@ public abstract class Robot {
     }
 
     public long getDatevider(Simulateur simu){
-        int volume = 0;
+        double volume = 0;
         int ligne = simu.getPosition(this).GetLigne();
         int colonne = simu.getPosition(this).GetColonne();
         Incendie[] incendies = simu.donnees.GetIncendies();
@@ -179,7 +179,7 @@ public abstract class Robot {
             incendie = incendies[i];
           }
         }
-    int intensite = incendie.GetIntensite();
+    double intensite = incendie.GetIntensite();
       long Date = 0;
       switch (this.GetTypeRobot()) {
         case ROUES:
@@ -238,8 +238,8 @@ public abstract class Robot {
       return Date;
     }
 
-    public int remplirReservoir(Simulateur simu, int ligne, int colonne){
-        int volume = 0;
+    public double remplirReservoir(Simulateur simu, int ligne, int colonne){
+        double volume = 0;
         switch (this.GetTypeRobot()) {
             case ROUES:
                 Robotaroues Robot_roues = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());
@@ -267,8 +267,8 @@ public abstract class Robot {
       }
 
 
-public int Vider(Simulateur simu,  int ligne, int colonne, int intensite){
-    int volume = 0;
+public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
+    double volume = 0;
     switch (this.GetTypeRobot()) {
       case ROUES:
         Robotaroues Robot_roue = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());

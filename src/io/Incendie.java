@@ -19,9 +19,9 @@ public class Incendie{
   */
   private int ligne;
   private int colonne;
-  private int nb_litres_extinction;
+  private double nb_litres_extinction;
 
-  public Incendie(int lig, int col, int nbl){
+  public Incendie(int lig, int col, double nbl){
     this.ligne = lig;
     this.colonne = col;
     this.nb_litres_extinction = nbl;
@@ -35,11 +35,11 @@ public class Incendie{
       return this.colonne;
   }
 
-  public int GetIntensite(){
+  public double GetIntensite(){
       return this.nb_litres_extinction;
   }
 
-  public void setIntensite(int intensite){
+  public void setIntensite(double intensite){
       this.nb_litres_extinction = intensite;
   }
 

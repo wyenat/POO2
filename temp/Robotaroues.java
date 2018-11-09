@@ -35,7 +35,7 @@ public class Robotaroues extends Robot{
     //   }
     // }
     //
-    // public void deverserEau(int Volume){
+    // public void deverserEau(double volume){
     //   if (Volume >= this.capacite_reservoir) {
     //     /*On vérifie qu'il puisse verser autant de litres*/
     //     this.capacite_reservoir -= Volume;

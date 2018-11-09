@@ -142,7 +142,7 @@ public class Chemin {
                 }
             }
         }
-        System.out.println("deplacement de " + this.getRobot() + "avec " + this.GetListeCases() + "depuis " + prece);
+        // System.out.println("deplacement de " + this.getRobot() + "avec " + this.GetListeCases() + "depuis " + prece);
 
         LinkedList<Case> parcourt = this.GetListeCases();
         int n = parcourt.size();
@@ -159,7 +159,7 @@ public class Chemin {
     public void afficherTrajet(LinkedList<Case> trajet){
         int n = trajet.size();
         for (int indice=0; indice < n; indice++){
-            System.out.println(trajet.get(indice));
+            // System.out.println(trajet.get(indice));
         }
     }
 

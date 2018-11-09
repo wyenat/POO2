@@ -29,19 +29,19 @@ public class Robotdrone extends Robot{
     return false;
   }
 
-  public int remplirReservoir(Simulateur simu, int lig, int col){
+  public double remplirReservoir(Simulateur simu, int lig, int col){
     if (testRemplir(simu, lig, col)){
       return 10000;
     }
     return 0;
   }
 
-  public long getDateVider(int intensite){
-    return intensite/333;
+  public long getDateVider(double intensite){
+    return ((int)(intensite))/333;
   }
 
 
-  public int vider(Simulateur simu, int ligne, int colonne, int intensite){
+  public double vider(Simulateur simu, int ligne, int colonne, double intensite){
       if (testVider(simu, ligne, colonne)){
         if (intensite >= super.getReservoir()){
           return 10000;

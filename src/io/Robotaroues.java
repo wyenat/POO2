@@ -37,7 +37,7 @@ public class Robotaroues extends Robot {
     return 10*60;
   }
 
-  public int remplirReservoir(Simulateur simu, int lig, int col){
+  public double remplirReservoir(Simulateur simu, int lig, int col){
 
     if (testRemplir(simu, lig, col)){
       return 5000;
@@ -55,24 +55,24 @@ public class Robotaroues extends Robot {
       }
 
 
-  public long getDateVider(int intensite){
+  public long getDateVider(double intensite){
 
         if (intensite >= super.getReservoir()){
           return 5*50;
         }
         else {
-          return 5*(intensite/100);
+          return 5*((int)intensite/100);
         }
 
   }
 
-  public int vider(Simulateur simu, int ligne, int colonne, int intensite){
+  public double vider(Simulateur simu, int ligne, int colonne, double intensite){
     if (testVider(simu, ligne, colonne)){
       if (intensite >= super.getReservoir()){
-        return 50*100;
+        return (double) 50*100;
       }
       else {
-        return (intensite/100)*100;
+        return (double)intensite;
       }
     }
     return 0;

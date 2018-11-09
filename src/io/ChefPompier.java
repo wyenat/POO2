@@ -70,8 +70,8 @@ public class ChefPompier {
       /**
       * Donne les ordres au robot d'aller traiter cet incendie sa mère
       */
-      int reservoir = chem.getRobot().getReservoir();
-      int intensite = incendie.GetIntensite();
+      double reservoir = simu.getReservoir(chem.getRobot());
+      double intensite = incendie.GetIntensite();
 
       Chemin pointEau = trouverPointDeau(chem.getArrivee(), chem.getRobot());
       Case case_incendie = chem.getArrivee();
@@ -82,16 +82,26 @@ public class ChefPompier {
           Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
           retour.deplacement();
       }
-      while ( intensite >= 0) {
 
-         System.out.println("JIOJHIOJOPBJKHIO" + reservoir);
+
+      int nombre_vidages= 0;
+      if (intensite>=reservoir && chem.getRobot().GetTypeRobot()!=TypeRobot.PATTES){
+          nombre_vidages = (int)intensite/(int)reservoir;
+          if (nombre_vidages*(int)reservoir != intensite){
+              nombre_vidages+=2;
+          }
+      }
+      else {
+          nombre_vidages = 1;
+      }
+      System.out.println(nombre_vidages);
+      for (int i = 0; i<nombre_vidages; i++) {
+
          System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
           EvenementDeverserEau vider = new EvenementDeverserEau(simu, chem.getRobot());
-          if (chem.getRobot().GetTypeRobot()==TypeRobot.PATTES){
-            break;
-          }
           System.out.println(intensite + " ct INTENSE "+ reservoir +" et " + vider);
           intensite -= reservoir;
+          reservoir =0;
           pointEau.deplacement();
           EvenementRemplirReservoir remplir = new EvenementRemplirReservoir(simu, chem.getRobot());
           switch(chem.getRobot().GetTypeRobot()){
@@ -108,10 +118,9 @@ public class ChefPompier {
                 break;
           }
 
-          if (intensite >0){
               Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
               retour.deplacement();
-          }
+
         //   System.out.println("LE RETOUR " + pointEau);
       }
 
@@ -127,7 +136,7 @@ public class ChefPompier {
               if (!this.incendiesAffectes[incendie_indice]){
                 if (robots[robot_indice].getEtat() == Etat.LIBRE){
                     Carte map =this.simu.donnees.GetCarte();
-                    Case depart = map.GetTableauDeCases()[map.GetNbColonnes()*robots[robot_indice].GetLigne() + robots[robot_indice].GetColonne()];
+                    Case depart = map.GetTableauDeCases()[map.GetNbColonnes()*this.simu.getPosition(robots[robot_indice]).GetLigne() + this.simu.getPosition(robots[robot_indice]).GetColonne()];
                     Case arrivee = map.GetTableauDeCases()[map.GetNbColonnes()*incendies[incendie_indice].GetLigne() + incendies[incendie_indice].GetColonne()];
                     Chemin chem = new Chemin(depart, arrivee, robots[robot_indice],this.simu);
                     if (chem.possible){
@@ -163,7 +172,7 @@ public class ChefPompier {
               long tempsmin = -1;
                 if (robots[robot_indice].getEtat() == Etat.LIBRE){
                     Carte map =this.simu.donnees.GetCarte();
-                    Case depart = map.GetTableauDeCases()[map.GetNbColonnes()*robots[robot_indice].GetLigne() + robots[robot_indice].GetColonne()];
+                    Case depart = map.GetTableauDeCases()[map.GetNbColonnes()*this.simu.getPosition(robots[robot_indice]).GetLigne() + this.simu.getPosition(robots[robot_indice]).GetColonne()];
                     Case arrivee = map.GetTableauDeCases()[map.GetNbColonnes()*incendies[incendie_indice].GetLigne() + incendies[incendie_indice].GetColonne()];
                     Chemin chem = new Chemin(depart, arrivee, robots[robot_indice],this.simu);
                     if (chem.possible){

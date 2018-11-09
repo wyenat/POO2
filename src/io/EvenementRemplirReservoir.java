@@ -14,7 +14,7 @@ public class EvenementRemplirReservoir extends Evenement {
     super.execute();
     int ligne = super.getRobot().GetLigne();
     int colonne = super.getRobot().GetColonne();
-    int volume = super.getRobot().remplirReservoir(super.getSimu(), ligne, colonne);
+    double volume = super.getRobot().remplirReservoir(super.getSimu(), ligne, colonne);
     if (volume > 0){
         this.robot.setReservoir(volume);
     }

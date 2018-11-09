@@ -11,7 +11,7 @@ public class Incendie{
      */
      private int ligne;
      private int colonne;
-     private int intensite;
+     private double intensite;
 
      public int GetLigneIncendie(){
        /* Permet la recupération de la ligne*/
@@ -41,7 +41,7 @@ public class Incendie{
        return this.intensite;
      }
 
-     public int SetIntensite(int intensite){
+     public int SetIntensite(double intensite){
        /* Permet l'affectation de l'intensite
           N'a pour l'instant qu'un test simple */
         if (intensite >= 0){

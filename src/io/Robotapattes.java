@@ -4,7 +4,7 @@ public class Robotapattes extends Robot {
 
   public Robotapattes(int lig, int col, double vitesse_deplacement){
     super(lig, col, vitesse_deplacement);
-    super.setReservoir(1000000); //POUDRE DONC INFINI
+    super.setReservoir(Double.POSITIVE_INFINITY); //POUDRE DONC INFINI
     //Degueu mais je sais pas faire autrement
     TypeRobot T;
     String mmT = "PATTES";
@@ -37,13 +37,13 @@ public class Robotapattes extends Robot {
     return 0;
   }
 
-  public int remplirReservoir(Simulateur simu, int ligne, int colonne){
+  public double remplirReservoir(Simulateur simu, int ligne, int colonne){
     return 0;
   }
 
-  public long getDateVider(int intensite){
+  public long getDateVider(double intensite){
 
-      return (intensite/10)*1;
+      return ((int)intensite/10)*1;
   }
 
 
@@ -53,7 +53,7 @@ public class Robotapattes extends Robot {
 
     }
 
-  public int vider(Simulateur simu, int ligne, int colonne, int intensite){
+  public double vider(Simulateur simu, int ligne, int colonne, double intensite){
 
       if (testVider(simu, ligne, colonne)){
         return intensite;
@@ -61,8 +61,8 @@ public class Robotapattes extends Robot {
     return 0;
   }
 
-  public int remplirReservoir(){
-      return -1;
+  public double remplirReservoir(){
+      return Double.POSITIVE_INFINITY;
   }
 
 

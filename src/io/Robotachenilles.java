@@ -53,29 +53,29 @@ public class Robotachenilles extends Robot {
 
   }
 
-  public int remplirReservoir(Simulateur simu, int ligne, int colonne){
+  public double remplirReservoir(Simulateur simu, int ligne, int colonne){
     if (testRemplir(simu, ligne, colonne)){
       return 2000;
     }
     return 0;
   }
 
-  public long getDateVider(int intensite){
+  public long getDateVider(double intensite){
       if (intensite >= super.getReservoir()){
           return 5*20;
       }
       else{
-          return 5*(intensite/100);
+          return 5*((int)intensite/100);
       }
   }
 
-  public int vider(Simulateur simu, int ligne, int colonne, int intensite){
+  public int vider(Simulateur simu, int ligne, int colonne, double intensite){
     if (testVider(simu, ligne, colonne)){
         if (intensite >= super.getReservoir()){
             return 20*100;
         }
         else{
-            return (intensite/100)*100;
+            return (int)intensite;
         }
     }
     return 0;

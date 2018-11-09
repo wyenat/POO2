@@ -8,6 +8,27 @@ public class EvenementDeverserEau extends Evenement {
 
   public EvenementDeverserEau(Simulateur simu, Robot robot){
     super(robot, simu, robot.getDatevider(simu), TypeEvenement.DeverserEau);
+    int ligne = super.getSimu().getPosition(robot).GetLigne();
+    int colonne = super.getSimu().getPosition(robot).GetColonne();
+    Incendie[] incendies = super.getSimu().donnees.GetIncendies();
+    Incendie incendie = incendies[0];
+    for (int i=0; i<incendies.length; i++){
+      if (incendies[i].GetLigne()==ligne && incendies[i].GetColonne()==colonne){
+        incendie = incendies[i];
+      }
+    }
+    double intensite = incendie.GetIntensite();
+    double reservoir = super.getSimu().getReservoir(robot);
+    if (intensite == 0){
+      throw new IllegalArgumentException("On ne peut pas faire d'intervention ici");
+    }
+
+    double volume = robot.Vider(super.getSimu(), ligne, colonne, intensite);
+    if (volume == 0){
+      return;
+    }
+    System.out.println(" on est la " + (reservoir));
+    super.getSimu().setReservoir(robot, reservoir - volume);
     simu.addEvenement(this);
 
   }
@@ -24,13 +45,13 @@ public class EvenementDeverserEau extends Evenement {
           incendie = incendies[i];
         }
       }
-      int intensite = incendie.GetIntensite();
-      int reservoir = super.getSimu().getReservoir(robot);
+      double intensite = incendie.GetIntensite();
+      double reservoir = super.getSimu().getReservoir(robot);
       if (intensite == 0){
         throw new IllegalArgumentException("On ne peut pas faire d'intervention ici");
       }
 
-      int volume = robot.Vider(super.getSimu(), ligne, colonne, intensite);
+      double volume = robot.Vider(super.getSimu(), ligne, colonne, intensite);
       if (volume == 0){
         return;
       }

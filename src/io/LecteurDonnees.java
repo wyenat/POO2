@@ -157,7 +157,7 @@ public class LecteurDonnees {
         try {
             int lig = scanner.nextInt();
             int col = scanner.nextInt();
-            int intensite = scanner.nextInt();
+            double intensite = scanner.nextInt();
             if (intensite <= 0) {
                 throw new DataFormatException("incendie " + i
                         + "nb litres pour eteindre doit etre > 0");

@@ -23,7 +23,7 @@ public class Simulateur implements Simulable {
 
     public LinkedList<Evenement> Evenements = new LinkedList<Evenement>();
     public Case[] positions;
-    public int[] reservoirs;
+    public double[] reservoirs;
 
     public GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
 
@@ -35,7 +35,7 @@ public class Simulateur implements Simulable {
         this.time = 0;
         this.pas = 1 + this.donnees.GetCarte().GetTailleCases()/500;
         this.positions = new Case[this.donnees.GetRobots().length];
-        this.reservoirs = new int[this.donnees.GetRobots().length];
+        this.reservoirs = new double[this.donnees.GetRobots().length];
         for (int i =0; i<this.donnees.GetRobots().length; i++){
             int lig = this.donnees.GetRobots()[i].GetLigne();
             int col = this.donnees.GetRobots()[i].GetColonne();
@@ -103,7 +103,7 @@ public class Simulateur implements Simulable {
        }
        else{
           this.time += this.pas;
-        //   System.out.println("time = " + this.time);
+          System.out.println("reservoirs = " + this.reservoirs[0]);
           executeEvenements();
           draw();
       }
@@ -192,8 +192,8 @@ public class Simulateur implements Simulable {
         }
     }
 
-    public int getReservoir(Robot robot){
-        int volume=0;
+    public double getReservoir(Robot robot){
+        double volume=0;
         for (int i = 0; i<this.donnees.GetRobots().length; i++){
             if (this.donnees.GetRobots()[i]==robot){
 
@@ -205,7 +205,7 @@ public class Simulateur implements Simulable {
 
     }
 
-    public void setReservoir(Robot robot, int volume){
+    public void setReservoir(Robot robot, double volume){
 
         for (int i = 0; i<this.donnees.GetRobots().length; i++){
             if (this.donnees.GetRobots()[i]==robot){
