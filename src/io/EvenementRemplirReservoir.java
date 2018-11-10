@@ -6,6 +6,8 @@ public class EvenementRemplirReservoir extends Evenement {
 
   public EvenementRemplirReservoir(Simulateur simu, Robot robot){
     super(robot, simu, robot.getDateremplir(), TypeEvenement.remplirReservoir);
+    double volume = robot.remplirReservoir(super.getSimu(), super.getSimu().getPosition(robot).GetLigne(), super.getSimu().getPosition(robot).GetColonne());
+    super.getSimu().setReservoir(robot, volume);
     simu.addEvenement(this);
 
   }

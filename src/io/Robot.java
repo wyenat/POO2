@@ -68,7 +68,7 @@ public abstract class Robot {
 
         }
         else {
-            throw new IllegalArgumentException(" remplir par un truc négatif ça c'est erreur" + this);
+            throw new IllegalArgumentException(" remplir par un truc négatif ça c'est erreur" + reservoir +  this);
         }
     }
 
@@ -269,31 +269,33 @@ public abstract class Robot {
 
 public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
     double volume = 0;
+    Case C = simu.getPosition(this);
+    System.out.println(C);
     switch (this.GetTypeRobot()) {
       case ROUES:
         Robotaroues Robot_roue = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-        volume = Robot_roue.vider(simu, ligne, colonne, intensite);
+        volume = Robot_roue.vider(simu, ligne, colonne, intensite, C);
         break;
 
       case CHENILLES:
         Robotachenilles Robot_chenille = new Robotachenilles(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-        volume = Robot_chenille.vider(simu, ligne, colonne, intensite);
+        volume = Robot_chenille.vider(simu, ligne, colonne, intensite, C);
         break;
 
       case PATTES:
         Robotapattes Robot_pattes = new Robotapattes(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-        volume = Robot_pattes.vider(simu, ligne, colonne, intensite);
+        volume = Robot_pattes.vider(simu, ligne, colonne, intensite, C);
         break;
 
       case DRONE:
         Robotdrone Robot_drone = new Robotdrone(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-        volume = Robot_drone.vider(simu, ligne, colonne, intensite);
+        volume = Robot_drone.vider(simu, ligne, colonne, intensite, C);
         break;
 
       default:
-        System.out.println("AIE");
         break;
     }
+    System.out.println("VOLUME" + volume);
     return volume;
   }
 

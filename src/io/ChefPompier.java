@@ -62,7 +62,7 @@ public class ChefPompier {
                  chem_candidat = chem;
              }
          }
-         System.out.println("arrivee" + arrivee);
+        //  System.out.println("arrivee" + arrivee);
          return chem_candidat;
     }
 
@@ -88,38 +88,40 @@ public class ChefPompier {
       if (intensite>=reservoir && chem.getRobot().GetTypeRobot()!=TypeRobot.PATTES){
           nombre_vidages = (int)intensite/(int)reservoir;
           if (nombre_vidages*(int)reservoir != intensite){
-              nombre_vidages+=2;
+              nombre_vidages+=1;
           }
       }
+
       else {
           nombre_vidages = 1;
       }
-      System.out.println(nombre_vidages);
       for (int i = 0; i<nombre_vidages; i++) {
-
-         System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
+          System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
           EvenementDeverserEau vider = new EvenementDeverserEau(simu, chem.getRobot());
-          System.out.println(intensite + " ct INTENSE "+ reservoir +" et " + vider);
           intensite -= reservoir;
-          reservoir =0;
-          pointEau.deplacement();
-          EvenementRemplirReservoir remplir = new EvenementRemplirReservoir(simu, chem.getRobot());
-          switch(chem.getRobot().GetTypeRobot()){
-            case DRONE:
-                reservoir+=10000;
-                break;
-
-            case ROUES:
-                reservoir+= 5000;
-                break;
-
-            case CHENILLES:
-                reservoir += 2000;
-                break;
-          }
-
+          System.out.println(intensite + " ct INTENSE "+ reservoir +" et " + vider);
+          if (chem.getRobot().GetTypeRobot() != TypeRobot.PATTES){
+              reservoir =0;
+              pointEau.deplacement();
+              EvenementRemplirReservoir remplir = new EvenementRemplirReservoir(simu, chem.getRobot());
               Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
               retour.deplacement();
+              switch(chem.getRobot().GetTypeRobot()){
+                case DRONE:
+                    reservoir+=10000;
+                    break;
+
+                case ROUES:
+                    reservoir+= 5000;
+                    break;
+
+                case CHENILLES:
+                    reservoir += 2000;
+                    break;
+                }
+          }
+
+
 
         //   System.out.println("LE RETOUR " + pointEau);
       }
@@ -156,6 +158,7 @@ public class ChefPompier {
             continue;
           }
         }
+
         }
     }
 

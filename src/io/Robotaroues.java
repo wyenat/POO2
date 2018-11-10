@@ -46,12 +46,13 @@ public class Robotaroues extends Robot {
   }
 
   public boolean testRemplir(Simulateur simu, int lig, int col){
-      boolean test1 = (this.GetLigne() == lig+1)&&(this.GetColonne() == col);
-      boolean test2 = (this.GetLigne() == lig) && (this.GetColonne() == col-1);
-      boolean test3 = (this.GetLigne() == lig) && (this.GetColonne() == col+1);
-      boolean test4 = (this.GetLigne() == lig-1) && (this.GetColonne() == col);
-
-      return (test1 || test2 ||test3 || test4);
+    //   boolean test1 = (simu.getPosition(this).GetLigne() == lig+1)&&(simu.getPosition(this).GetColonne() == col);
+    //   boolean test2 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col-1);
+    //   boolean test3 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col+1);
+    //   boolean test4 = (simu.getPosition(this).GetLigne() == lig-1) && (simu.getPosition(this).GetColonne() == col);
+    //   System.out.println(test3);
+    //   return (test1 || test2 ||test3 || test4);
+    return true;
       }
 
 
@@ -66,20 +67,20 @@ public class Robotaroues extends Robot {
 
   }
 
-  public double vider(Simulateur simu, int ligne, int colonne, double intensite){
-    if (testVider(simu, ligne, colonne)){
+  public double vider(Simulateur simu, int ligne, int colonne, double intensite, Case C){
+    if (testVider(simu, ligne, colonne, C)){
       if (intensite >= super.getReservoir()){
         return (double) 50*100;
       }
       else {
-        return (double)intensite;
+        return intensite;
       }
     }
     return 0;
   }
 
 
-  public boolean testVider(Simulateur simu, int lig, int col){
+  public boolean testVider(Simulateur simu, int lig, int col, Case C){
     Incendie[] incendies = simu.donnees.GetIncendies();
     boolean incendie_ici = false;
     Incendie incendie = incendies[0];
@@ -93,7 +94,7 @@ public class Robotaroues extends Robot {
     }
     if (incendie_ici){
 
-      boolean test = (this.GetLigne() == incendie.GetLigne()) && (this.GetColonne() == incendie.GetColonne());
+      boolean test = (C.GetLigne() == incendie.GetLigne()) && (C.GetColonne() == incendie.GetColonne());
       return test;
     }
     return false;

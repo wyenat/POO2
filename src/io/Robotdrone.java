@@ -22,7 +22,7 @@ public class Robotdrone extends Robot{
   }
 
   public boolean testRemplir(Simulateur simu, int lig, int col){
-    if (super.GetLigne() == lig && super.GetColonne() == col){
+    if (simu.getPosition(this).GetLigne() == lig && simu.getPosition(this).GetColonne() == col){
         return true;
       }
 
@@ -41,8 +41,8 @@ public class Robotdrone extends Robot{
   }
 
 
-  public double vider(Simulateur simu, int ligne, int colonne, double intensite){
-      if (testVider(simu, ligne, colonne)){
+  public double vider(Simulateur simu, int ligne, int colonne, double intensite, Case C){
+      if (testVider(simu, ligne, colonne, C)){
         if (intensite >= super.getReservoir()){
           return 10000;
         }
@@ -53,13 +53,9 @@ public class Robotdrone extends Robot{
       return 0;
   }
 
-  public double GetVitesse(NatureTerrain Nature){
-    double vitesse = super.GetVitesse();
-    return vitesse;
-  }
 
 
-  public boolean testVider(Simulateur simu, int lig, int col){
+  public boolean testVider(Simulateur simu, int lig, int col, Case C){
     Incendie[] incendies = simu.donnees.GetIncendies();
     boolean incendie_ici = false;
     Incendie incendie = incendies[0];
@@ -70,10 +66,10 @@ public class Robotdrone extends Robot{
         incendie = incendies[i];
       }
     }
+    // System.out.println(simu.getPosition(this));
     if (incendie_ici){
 
-
-      if (this.GetLigne() == incendie.GetLigne() && this.GetColonne() == incendie.GetColonne()){
+      if (C.GetLigne() == incendie.GetLigne() && C.GetColonne() == incendie.GetColonne()){
         return true;
       }
     }
@@ -81,6 +77,10 @@ public class Robotdrone extends Robot{
   }
 
 
+  public double GetVitesse(NatureTerrain Nature){
+      double vitesse = super.GetVitesse();
+      return vitesse;
+  }
 
   public boolean test_deplacement(Case C){
     return true;

@@ -41,6 +41,7 @@ public class Simulateur implements Simulable {
             int col = this.donnees.GetRobots()[i].GetColonne();
             this.positions[i] = this.donnees.GetCarte().GetTableauDeCases()[lig* this.donnees.GetCarte().GetNbColonnes()+col];
             this.reservoirs[i] = this.donnees.GetRobots()[i].getReservoir();
+        
         }
         draw();
     }
@@ -173,8 +174,8 @@ public class Simulateur implements Simulable {
         for (int i = 0; i<this.donnees.GetRobots().length; i++){
             if (this.donnees.GetRobots()[i]==robot){
 
-            C = this.positions[i];
-            break;
+                C = this.positions[i];
+                break;
             }
         }
         return C;
