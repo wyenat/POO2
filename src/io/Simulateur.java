@@ -41,7 +41,7 @@ public class Simulateur implements Simulable {
             int col = this.donnees.GetRobots()[i].GetColonne();
             this.positions[i] = this.donnees.GetCarte().GetTableauDeCases()[lig* this.donnees.GetCarte().GetNbColonnes()+col];
             this.reservoirs[i] = this.donnees.GetRobots()[i].getReservoir();
-        
+
         }
         draw();
     }
@@ -104,7 +104,6 @@ public class Simulateur implements Simulable {
        }
        else{
           this.time += this.pas;
-          System.out.println("reservoirs = " + this.reservoirs[0]);
           executeEvenements();
           draw();
       }

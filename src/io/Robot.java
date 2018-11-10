@@ -232,7 +232,7 @@ public abstract class Robot {
           break;
 
         default:
-          System.out.println("AIE");
+        //   System.out.println("AIE");
           break;
       }
       return Date;
@@ -260,7 +260,7 @@ public abstract class Robot {
                 break;
 
             default:
-              System.out.println("AIE");
+            //   System.out.println("AIE");
               break;
         }
         return volume;
@@ -270,7 +270,7 @@ public abstract class Robot {
 public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
     double volume = 0;
     Case C = simu.getPosition(this);
-    System.out.println(C);
+    // System.out.println(C);
     switch (this.GetTypeRobot()) {
       case ROUES:
         Robotaroues Robot_roue = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());
@@ -295,7 +295,7 @@ public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
       default:
         break;
     }
-    System.out.println("VOLUME" + volume);
+    // System.out.println("VOLUME" + volume);
     return volume;
   }
 

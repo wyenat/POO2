@@ -95,30 +95,17 @@ public class ChefPompier {
       else {
           nombre_vidages = 1;
       }
+      Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
       for (int i = 0; i<nombre_vidages; i++) {
-          System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
+        //   System.out.println("alors "+ reservoir + " et inten: " + intensite + "robot " + chem.getRobot());
           EvenementDeverserEau vider = new EvenementDeverserEau(simu, chem.getRobot());
-          intensite -= reservoir;
-          System.out.println(intensite + " ct INTENSE "+ reservoir +" et " + vider);
+        //   System.out.println(intensite + " ct INTENSE "+ reservoir +" et " + vider);
           if (chem.getRobot().GetTypeRobot() != TypeRobot.PATTES){
-              reservoir =0;
               pointEau.deplacement();
               EvenementRemplirReservoir remplir = new EvenementRemplirReservoir(simu, chem.getRobot());
-              Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
+              
+
               retour.deplacement();
-              switch(chem.getRobot().GetTypeRobot()){
-                case DRONE:
-                    reservoir+=10000;
-                    break;
-
-                case ROUES:
-                    reservoir+= 5000;
-                    break;
-
-                case CHENILLES:
-                    reservoir += 2000;
-                    break;
-                }
           }
 
 
@@ -142,7 +129,7 @@ public class ChefPompier {
                     Case arrivee = map.GetTableauDeCases()[map.GetNbColonnes()*incendies[incendie_indice].GetLigne() + incendies[incendie_indice].GetColonne()];
                     Chemin chem = new Chemin(depart, arrivee, robots[robot_indice],this.simu);
                     if (chem.possible){
-                      System.out.println(" le robot "+ robots[robot_indice] + " va gerer " + incendies[incendie_indice] + " En passant par " + chem);
+                    //   System.out.println(" le robot "+ robots[robot_indice] + " va gerer " + incendies[incendie_indice] + " En passant par " + chem);
                       this.incendiesAffectes[incendie_indice] = true;
                       this.traiterIncendie(chem, incendies[incendie_indice]);
                     }

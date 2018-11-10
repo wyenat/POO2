@@ -27,7 +27,7 @@ public class EvenementDeverserEau extends Evenement {
     if (volume == 0){
       return;
     }
-    System.out.println(" on est la " + (reservoir) + " vol " + volume);
+    // System.out.println(" on est la " + (reservoir) + " vol " + volume);
     super.getSimu().setReservoir(robot, reservoir - volume);
     simu.addEvenement(this);
 
@@ -47,7 +47,7 @@ public class EvenementDeverserEau extends Evenement {
       }
       double intensite = incendie.GetIntensite();
       double reservoir = super.getSimu().getReservoir(robot);
-      System.out.println(" ON VA  " + reservoir + " AVEC UNE INTENSITE DE " + intensite);
+    //   System.out.println(" ON VA  " + reservoir + " AVEC UNE INTENSITE DE " + intensite);
       if (intensite == 0){
         throw new IllegalArgumentException("On ne peut pas faire d'intervention ici");
       }
@@ -62,7 +62,7 @@ public class EvenementDeverserEau extends Evenement {
       }
 
       public String toString(){
-          return super.toString() + ": DeverserEau: " + this.robot + "déverse en (" + this.getRobot().GetLigne() + ", " + this.getRobot().GetColonne() + ")";
+          return super.toString() + "DeverserEau: " + this.robot + "déverse en (" + this.getRobot().GetLigne() + ", " + this.getRobot().GetColonne() + ")";
       }
 
 
