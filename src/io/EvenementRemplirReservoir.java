@@ -6,16 +6,15 @@ public class EvenementRemplirReservoir extends Evenement {
 
   public EvenementRemplirReservoir(Simulateur simu, Robot robot){
     super(robot, simu, robot.getDateremplir(), TypeEvenement.remplirReservoir);
-    double volume = robot.remplirReservoir(super.getSimu(), super.getSimu().getPosition(robot).GetLigne(), super.getSimu().getPosition(robot).GetColonne());
+    double volume = robot.remplirReservoir(super.getSimu(), super.getSimu().getPosition(robot).getLigne(), super.getSimu().getPosition(robot).getColonne());
     super.getSimu().setReservoir(robot, volume);
     simu.addEvenement(this);
-
   }
 
   public void execute(){
     super.execute();
-    int ligne = super.getRobot().GetLigne();
-    int colonne = super.getRobot().GetColonne();
+    int ligne = super.getRobot().getLigne();
+    int colonne = super.getRobot().getColonne();
     double volume = super.getRobot().remplirReservoir(super.getSimu(), ligne, colonne);
     if (volume > 0){
         this.robot.setReservoir(volume);
@@ -23,6 +22,6 @@ public class EvenementRemplirReservoir extends Evenement {
   }
 
   public String toString(){
-      return super.toString() + ": remplirReservoir: fais le plein en (" + this.getRobot().GetLigne() + ", " + this.getRobot().GetColonne() + ")";
+      return super.toString() + ": remplirReservoir: fais le plein en (" + this.getRobot().getLigne() + ", " + this.getRobot().getColonne() + ")";
   }
 }

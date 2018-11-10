@@ -8,16 +8,16 @@ public class EvenementDeverserEau extends Evenement {
 
   public EvenementDeverserEau(Simulateur simu, Robot robot){
     super(robot, simu, robot.getDatevider(simu), TypeEvenement.DeverserEau);
-    int ligne = super.getSimu().getPosition(robot).GetLigne();
-    int colonne = super.getSimu().getPosition(robot).GetColonne();
-    Incendie[] incendies = super.getSimu().donnees.GetIncendies();
+    int ligne = super.getSimu().getPosition(robot).getLigne();
+    int colonne = super.getSimu().getPosition(robot).getColonne();
+    Incendie[] incendies = super.getSimu().donnees.getIncendies();
     Incendie incendie = incendies[0];
     for (int i=0; i<incendies.length; i++){
-      if (incendies[i].GetLigne()==ligne && incendies[i].GetColonne()==colonne){
+      if (incendies[i].getLigne()==ligne && incendies[i].getColonne()==colonne){
         incendie = incendies[i];
       }
     }
-    double intensite = incendie.GetIntensite();
+    double intensite = incendie.getIntensite();
     double reservoir = super.getSimu().getReservoir(robot);
     if (intensite == 0){
       throw new IllegalArgumentException("On ne peut pas faire d'intervention ici");
@@ -36,16 +36,16 @@ public class EvenementDeverserEau extends Evenement {
   public void execute(){
       super.execute();
       Robot robot = super.getRobot();
-      int ligne = robot.GetLigne();
-      int colonne = robot.GetColonne();
-      Incendie[] incendies = super.getSimu().donnees.GetIncendies();
+      int ligne = robot.getLigne();
+      int colonne = robot.getColonne();
+      Incendie[] incendies = super.getSimu().donnees.getIncendies();
       Incendie incendie = incendies[0];
       for (int i=0; i<incendies.length; i++){
-        if (incendies[i].GetLigne()==ligne && incendies[i].GetColonne()==colonne){
+        if (incendies[i].getLigne()==ligne && incendies[i].getColonne()==colonne){
           incendie = incendies[i];
         }
       }
-      double intensite = incendie.GetIntensite();
+      double intensite = incendie.getIntensite();
       double reservoir = super.getSimu().getReservoir(robot);
     //   System.out.println(" ON VA  " + reservoir + " AVEC UNE INTENSITE DE " + intensite);
       if (intensite == 0){
@@ -62,7 +62,7 @@ public class EvenementDeverserEau extends Evenement {
       }
 
       public String toString(){
-          return super.toString() + "DeverserEau: " + this.robot + "déverse en (" + this.getRobot().GetLigne() + ", " + this.getRobot().GetColonne() + ")";
+          return super.toString() + "DeverserEau: " + this.robot + "déverse en (" + this.getRobot().getLigne() + ", " + this.getRobot().getColonne() + ")";
       }
 
 

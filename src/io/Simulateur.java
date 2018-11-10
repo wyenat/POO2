@@ -21,36 +21,38 @@ public class Simulateur implements Simulable {
     public int pas;
     public int time;
 
-    public LinkedList<Evenement> Evenements = new LinkedList<Evenement>();
+    public LinkedList<Evenement> evenements = new LinkedList<Evenement>();
     public Case[] positions;
     public double[] reservoirs;
 
     public GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
 
     public Simulateur(DonneesSimulation data) {
-        gui.setSimulable(this);				// association a la gui!
-
-        /*Lecture des données de simulation */
+        /**
+         *  Les les données dans data, et crée la simulation associée.
+         */
+        gui.setSimulable(this);	
         this.donnees = data;
         this.time = 0;
-        this.pas = 1 + this.donnees.GetCarte().GetTailleCases()/500;
-        this.positions = new Case[this.donnees.GetRobots().length];
-        this.reservoirs = new double[this.donnees.GetRobots().length];
-        for (int i =0; i<this.donnees.GetRobots().length; i++){
-            int lig = this.donnees.GetRobots()[i].GetLigne();
-            int col = this.donnees.GetRobots()[i].GetColonne();
-            this.positions[i] = this.donnees.GetCarte().GetTableauDeCases()[lig* this.donnees.GetCarte().GetNbColonnes()+col];
-            this.reservoirs[i] = this.donnees.GetRobots()[i].getReservoir();
+        this.pas = 1 + this.donnees.getCarte().getTailleCases()/500;
+        this.positions = new Case[this.donnees.getRobots().length];
+        this.reservoirs = new double[this.donnees.getRobots().length];
+        for (int i =0; i<this.donnees.getRobots().length; i++){
+            int lig = this.donnees.getRobots()[i].getLigne();
+            int col = this.donnees.getRobots()[i].getColonne();
+            this.positions[i] = this.donnees.getCarte().getTableauDeCases()[lig* this.donnees.getCarte().getNbColonnes()+col];
+            this.reservoirs[i] = this.donnees.getRobots()[i].getReservoir();
 
         }
         draw();
     }
 
     public void executeEvenements(){
-        /** Trouve dans la liste des évènements ceux dont la date est passée,
+        /** 
+         * Trouve dans la liste des évènements ceux dont la date est passée,
          * et les execute
          */
-         Iterator<Evenement> iter = Evenements.iterator();
+         Iterator<Evenement> iter = evenements.iterator();
          while(iter.hasNext()){
              Evenement eve = iter.next();
              if (this.time <= eve.getDate() &  eve.getDate() < this.time + this.pas){
@@ -64,14 +66,14 @@ public class Simulateur implements Simulable {
         /**
          * Ajoute un évènement
          */
-         this.Evenements.add(e);
+         this.evenements.add(e);
     }
 
     public void AfficherEvenements(){
         /**
          * Affiche les Evenements dans le tableau d'évènements
          */
-         Iterator<Evenement> iter = Evenements.iterator();
+         Iterator<Evenement> iter = evenements.iterator();
          int i=0;
          while (iter.hasNext()){
             Evenement eve = iter.next();
@@ -80,11 +82,11 @@ public class Simulateur implements Simulable {
          }
     }
 
-    public boolean simulationTerminee(){
+    private boolean simulationTerminee(){
         /**
          * Retourne true s'il n'y a plus d'évènements en cours
          */
-         Iterator<Evenement> iter = Evenements.iterator();
+         Iterator<Evenement> iter = evenements.iterator();
          while (iter.hasNext()){
              Evenement eve = iter.next();
              if (this.time <= eve.getDate()){
@@ -97,7 +99,7 @@ public class Simulateur implements Simulable {
     @Override
     public void next() {
       /**
-       * Avance la simulation d'un pas de temps
+       * Avance la simulation d'un pas de temps, si elle n'est pas finie.
        */
 
        if (simulationTerminee()){
@@ -116,15 +118,9 @@ public class Simulateur implements Simulable {
        * Replace la simulation dans les conditions initiales
        */
       this.time = 0;
-    //   Evenement[] sauvegarde_evenements = Evenements;
       try{
-        //   System.out.println("##########AVANT RESET########");
-        //   AfficherEvenements();
           DonneesSimulation data_init = LecteurDonnees.lire(this.donnees.fichier);
           this.donnees.RemettreInitial(data_init);
-        // System.out.println("##########APRES RESET########");
-        AfficherEvenements();
-        //   this.Evenements = sauvegarde_evenements;
           draw();
       }
       catch (FileNotFoundException e) {
@@ -135,43 +131,37 @@ public class Simulateur implements Simulable {
     }
 
 
-    public void draw(){
-      // gui.reset();
-
-      Carte cart = this.donnees.GetCarte();
-      int nb_lignes = cart.GetNbLignes();
-      int nb_colonnes = cart.GetNbColonnes();
-
-      /*La valeur taille_cases dans Cartes sert à quoi ?? J'ai choisi
-      d'adapter la taille des cases à ce qu'on peut bien voir à l'écran
-      en fonction du nb de lignes et de colonnes*/
-      //int taille_theorique cases = cart.GetTailleCases();
-
+    private void draw(){
+        /**
+         * Dessine la simulation 
+         */
+      Carte cart = this.donnees.getCarte();
+      int nb_lignes = cart.getNbLignes();
+      int nb_colonnes = cart.getNbColonnes();
       int taille_ecran = 500;
       int taille_cases = taille_ecran/Math.max(nb_colonnes, nb_lignes);
-
-      // System.out.println("LIGNE = " + nb_lignes + "\nColonne = " + nb_colonnes);
-      // System.out.println("Taille des cases = " + taille_cases);
-
       this.gui.reset();
 
-      for (Case c : cart.GetTableauDeCases()){
+      for (Case c : cart.getTableauDeCases()){
           c.draw_case(this.gui, taille_cases);
       }
 
-      for (Incendie i : this.donnees.GetIncendies()){
+      for (Incendie i : this.donnees.getIncendies()){
         i.draw_incendie(this.gui, taille_cases);
       }
 
-      for (Robot r : this.donnees.GetRobots()){
+      for (Robot r : this.donnees.getRobots()){
         r.draw_robot(this.gui, taille_cases);
       }
     }
 
     public Case getPosition(Robot robot){
+        /**
+         * Retourne la position du robot entré, en case.
+         */
         Case C=null;
-        for (int i = 0; i<this.donnees.GetRobots().length; i++){
-            if (this.donnees.GetRobots()[i]==robot){
+        for (int i = 0; i<this.donnees.getRobots().length; i++){
+            if (this.donnees.getRobots()[i]==robot){
 
                 C = this.positions[i];
                 break;
@@ -182,9 +172,11 @@ public class Simulateur implements Simulable {
     }
 
     public void setPosition(Robot robot, Case C){
-
-        for (int i = 0; i<this.donnees.GetRobots().length; i++){
-            if (this.donnees.GetRobots()[i]==robot){
+        /**
+         * Met le robot à la case rentrée
+         */
+        for (int i = 0; i<this.donnees.getRobots().length; i++){
+            if (this.donnees.getRobots()[i]==robot){
 
                 this.positions[i] = C;
                 break;
@@ -193,9 +185,12 @@ public class Simulateur implements Simulable {
     }
 
     public double getReservoir(Robot robot){
+        /** 
+         * Retourne le reservoir du robot 
+         */
         double volume=0;
-        for (int i = 0; i<this.donnees.GetRobots().length; i++){
-            if (this.donnees.GetRobots()[i]==robot){
+        for (int i = 0; i<this.donnees.getRobots().length; i++){
+            if (this.donnees.getRobots()[i]==robot){
 
             volume = this.reservoirs[i];
             break;
@@ -206,9 +201,11 @@ public class Simulateur implements Simulable {
     }
 
     public void setReservoir(Robot robot, double volume){
-
-        for (int i = 0; i<this.donnees.GetRobots().length; i++){
-            if (this.donnees.GetRobots()[i]==robot){
+        /**
+         * Met le volume entré dans le reservoir du robot
+         */
+        for (int i = 0; i<this.donnees.getRobots().length; i++){
+            if (this.donnees.getRobots()[i]==robot){
 
                 this.reservoirs[i] = volume;
                 break;

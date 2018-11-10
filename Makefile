@@ -21,47 +21,20 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: invader lecture evenement scenario0 scenario1
+all: sujet
 
-invader:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestInvader.java
-	java -classpath bin:bin/gui.jar TestInvader
-
-lecture:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestLecteurDonnees.java
-	java -classpath bin:bin/* TestLecteurDonnees cartes/carteSujet.map
-
-robot:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestRobot.java
-	java -classpath bin:bin/* TestRobot
-
-evenement:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEvenement.java
-	java -classpath bin:bin/* TestEvenement cartes/carteSujet.map
-
-scenar0:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestScenario0.java
-	java -classpath bin:bin/* TestScenario0 cartes/carteSujet.map
-
-scenar1:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestScenario1.java
-	java -classpath bin:bin/* TestScenario1 cartes/carteSujet.map
-
-chemin:
-	javac -d bin -classpath bin/gui.jar -Xlint -sourcepath src src/TestChemin.java
-	java -classpath bin:bin/*  TestChemin cartes/carteSujet.map
-
-chemmush:
-	javac -d bin -classpath bin/gui.jar -Xlint -sourcepath src src/TestChemin.java
-	java -classpath bin:bin/*  TestChemin cartes/mushroomOfHell-20x20.map
-
-chemspi:
-	javac -d bin -classpath bin/gui.jar -Xlint -sourcepath src src/TestChemin.java
-	java -classpath bin:bin/*  TestChemin cartes/mushroomOfHell-20x20.map
-
-chef:
+sujet:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestChefPompier.java
 	java -classpath bin:bin/*  TestChefPompier cartes/carteSujet.map
+	
+desert:
+	java -classpath bin:bin/*  TestChefPompier cartes/desertOfDeath-20x20.map
+	
+mush:
+	java -classpath bin:bin/*  TestChefPompier cartes/mushroomOfHell-20x20.map
+	
+mad:
+	java -classpath bin:bin/*  TestChefPompier cartes/spiralOfMadness-50x50.map
 
 clean:
 	rm -rf bin/*.class

@@ -30,11 +30,12 @@ public abstract class Robot {
     this.etat = Etat.LIBRE;
   }
 
-    public int GetLigne(){
+// sets & gets
+    public int getLigne(){
         return this.ligne;
     }
 
-    public int GetColonne(){
+    public int getColonne(){
         return this.colonne;
     }
 
@@ -55,7 +56,7 @@ public abstract class Robot {
         this.colonne = colonne;
     }
 
-    public double GetVitesse(){
+    public double getVitesse(){
       return this.vitesse_deplacement;
     }
 
@@ -77,28 +78,28 @@ public abstract class Robot {
     }
 
     public void setPosition(Case Case){
-      this.setLigne(Case.GetLigne());
-      this.setColonne(Case.GetColonne());
+      this.setLigne(Case.getLigne());
+      this.setColonne(Case.getColonne());
       double vitesse = 0;
-      switch (this.GetTypeRobot()) {
+      switch (this.getTypeRobot()) {
         case ROUES:
-          Robotaroues Robot_roue = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-          vitesse = Robot_roue.GetVitesse(Case.GetNature());
+          Robotaroues Robot_roue = new Robotaroues(this.getLigne(), this.getColonne(), this.getVitesse());
+          vitesse = Robot_roue.getVitesse(Case.getNature());
           break;
 
         case CHENILLES:
-          Robotachenilles Robot_chenille = new Robotachenilles(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-          vitesse = Robot_chenille.GetVitesse(Case.GetNature());
+          Robotachenilles Robot_chenille = new Robotachenilles(this.getLigne(), this.getColonne(), this.getVitesse());
+          vitesse = Robot_chenille.getVitesse(Case.getNature());
           break;
 
         case PATTES:
-          Robotapattes Robot_pattes = new Robotapattes(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-          vitesse = Robot_pattes.GetVitesse(Case.GetNature());
+          Robotapattes Robot_pattes = new Robotapattes(this.getLigne(), this.getColonne(), this.getVitesse());
+          vitesse = Robot_pattes.getVitesse(Case.getNature());
           break;
 
         case DRONE:
-          Robotdrone Robot_drone = new Robotdrone(this.GetLigne(), this.GetColonne(), this.GetVitesse());
-          vitesse = Robot_drone.GetVitesse(Case.GetNature());
+          Robotdrone Robot_drone = new Robotdrone(this.getLigne(), this.getColonne(), this.getVitesse());
+          vitesse = Robot_drone.getVitesse(Case.getNature());
           break;
 
         default:
@@ -108,27 +109,28 @@ public abstract class Robot {
       this.setVitesse(vitesse);
     }
 
+// fin sets & gets
 
     public boolean test_deplacement(Case C){
       boolean boo = false;
-      switch (this.GetTypeRobot()) {
+      switch (this.getTypeRobot()) {
         case ROUES:
-          Robotaroues Robot_roue = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotaroues Robot_roue = new Robotaroues(this.getLigne(), this.getColonne(), this.getVitesse());
           boo = Robot_roue.test_deplacement(C);
           break;
 
         case CHENILLES:
-          Robotachenilles Robot_chenille = new Robotachenilles(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotachenilles Robot_chenille = new Robotachenilles(this.getLigne(), this.getColonne(), this.getVitesse());
           boo = Robot_chenille.test_deplacement(C);
           break;
 
         case PATTES:
-          Robotapattes Robot_pattes = new Robotapattes(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotapattes Robot_pattes = new Robotapattes(this.getLigne(), this.getColonne(), this.getVitesse());
           boo = Robot_pattes.test_deplacement(C);
           break;
 
         case DRONE:
-          Robotdrone Robot_drone = new Robotdrone(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotdrone Robot_drone = new Robotdrone(this.getLigne(), this.getColonne(), this.getVitesse());
           boo = Robot_drone.test_deplacement(C);
           break;
 
@@ -138,21 +140,21 @@ public abstract class Robot {
       return boo;
     }
 
-    public TypeRobot GetTypeRobot(){
+    public TypeRobot getTypeRobot(){
       return this.type;
     }
 
-    public void SetTypeRobot(TypeRobot T){
+    public void setTypeRobot(TypeRobot T){
       this.type = T;
     }
 
     public void draw_robot(GUISimulator gui, int taille_case){
-      int x = taille_case/5 + (this.GetLigne())* taille_case;
-      int y =  taille_case/5 + (this.GetColonne())* taille_case;
+      int x = taille_case/5 + (this.getLigne())* taille_case;
+      int y =  taille_case/5 + (this.getColonne())* taille_case;
       int taille = 4 * taille_case/5;
 
       /*A FINIR*/
-      switch (this.GetTypeRobot()){
+      switch (this.getTypeRobot()){
           case DRONE:
               gui.addGraphicalElement(new ImageElement(y, x, "img/drone.png", taille, taille, new Canvas()));
               break;
@@ -170,35 +172,35 @@ public abstract class Robot {
 
     public long getDatevider(Simulateur simu){
         double volume = 0;
-        int ligne = simu.getPosition(this).GetLigne();
-        int colonne = simu.getPosition(this).GetColonne();
-        Incendie[] incendies = simu.donnees.GetIncendies();
+        int ligne = simu.getPosition(this).getLigne();
+        int colonne = simu.getPosition(this).getColonne();
+        Incendie[] incendies = simu.donnees.getIncendies();
         Incendie incendie = incendies[0];
         for (int i=0; i<incendies.length; i++){
-          if (incendies[i].GetLigne()==ligne && incendies[i].GetColonne()==colonne){
+          if (incendies[i].getLigne()==ligne && incendies[i].getColonne()==colonne){
             incendie = incendies[i];
           }
         }
-    double intensite = incendie.GetIntensite();
+    double intensite = incendie.getIntensite();
       long Date = 0;
-      switch (this.GetTypeRobot()) {
+      switch (this.getTypeRobot()) {
         case ROUES:
-          Robotaroues Robot_roue = new Robotaroues(GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotaroues Robot_roue = new Robotaroues(getLigne(), this.getColonne(), this.getVitesse());
           Date = Robot_roue.getDateVider(intensite);
           break;
 
         case CHENILLES:
-          Robotachenilles Robot_chenille = new Robotachenilles(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotachenilles Robot_chenille = new Robotachenilles(this.getLigne(), this.getColonne(), this.getVitesse());
           Date = Robot_chenille.getDateVider(intensite);
           break;
 
         case PATTES:
-          Robotapattes Robot_pattes = new Robotapattes(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotapattes Robot_pattes = new Robotapattes(this.getLigne(), this.getColonne(), this.getVitesse());
           Date = Robot_pattes.getDateVider(intensite);
           break;
 
         case DRONE:
-          Robotdrone Robot_drone = new Robotdrone(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotdrone Robot_drone = new Robotdrone(this.getLigne(), this.getColonne(), this.getVitesse());
           Date = Robot_drone.getDateVider(intensite);
           break;
 
@@ -211,14 +213,14 @@ public abstract class Robot {
 
     public long getDateremplir(){
       long Date = 0;
-      switch (this.GetTypeRobot()) {
+      switch (this.getTypeRobot()) {
         case ROUES:
-          Robotaroues Robot_roue = new Robotaroues(GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotaroues Robot_roue = new Robotaroues(getLigne(), this.getColonne(), this.getVitesse());
           Date = Robot_roue.getDateremplir();
           break;
 
         case CHENILLES:
-          Robotachenilles Robot_chenille = new Robotachenilles(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotachenilles Robot_chenille = new Robotachenilles(this.getLigne(), this.getColonne(), this.getVitesse());
           Date = Robot_chenille.getDateremplir();
           break;
 
@@ -227,7 +229,7 @@ public abstract class Robot {
 
 
         case DRONE:
-          Robotdrone Robot_drone = new Robotdrone(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+          Robotdrone Robot_drone = new Robotdrone(this.getLigne(), this.getColonne(), this.getVitesse());
           Date = Robot_drone.getDateremplir();
           break;
 
@@ -240,14 +242,14 @@ public abstract class Robot {
 
     public double remplirReservoir(Simulateur simu, int ligne, int colonne){
         double volume = 0;
-        switch (this.GetTypeRobot()) {
+        switch (this.getTypeRobot()) {
             case ROUES:
-                Robotaroues Robot_roues = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+                Robotaroues Robot_roues = new Robotaroues(this.getLigne(), this.getColonne(), this.getVitesse());
                 volume = Robot_roues.remplirReservoir(simu, ligne, colonne);
                 break;
 
             case CHENILLES:
-                Robotachenilles Robot_chenilles = new Robotachenilles(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+                Robotachenilles Robot_chenilles = new Robotachenilles(this.getLigne(), this.getColonne(), this.getVitesse());
                 volume = Robot_chenilles.remplirReservoir(simu, ligne, colonne);
                 break;
 
@@ -255,7 +257,7 @@ public abstract class Robot {
                 throw new IllegalArgumentException("On ne peut pas remplir le reservoir d'un robot à pattes");
 
             case DRONE:
-                Robotdrone Robot_drone = new Robotdrone(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+                Robotdrone Robot_drone = new Robotdrone(this.getLigne(), this.getColonne(), this.getVitesse());
                 volume = Robot_drone.remplirReservoir(simu, ligne, colonne);
                 break;
 
@@ -271,24 +273,24 @@ public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
     double volume = 0;
     Case C = simu.getPosition(this);
     // System.out.println(C);
-    switch (this.GetTypeRobot()) {
+    switch (this.getTypeRobot()) {
       case ROUES:
-        Robotaroues Robot_roue = new Robotaroues(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+        Robotaroues Robot_roue = new Robotaroues(this.getLigne(), this.getColonne(), this.getVitesse());
         volume = Robot_roue.vider(simu, ligne, colonne, intensite, C);
         break;
 
       case CHENILLES:
-        Robotachenilles Robot_chenille = new Robotachenilles(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+        Robotachenilles Robot_chenille = new Robotachenilles(this.getLigne(), this.getColonne(), this.getVitesse());
         volume = Robot_chenille.vider(simu, ligne, colonne, intensite, C);
         break;
 
       case PATTES:
-        Robotapattes Robot_pattes = new Robotapattes(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+        Robotapattes Robot_pattes = new Robotapattes(this.getLigne(), this.getColonne(), this.getVitesse());
         volume = Robot_pattes.vider(simu, ligne, colonne, intensite, C);
         break;
 
       case DRONE:
-        Robotdrone Robot_drone = new Robotdrone(this.GetLigne(), this.GetColonne(), this.GetVitesse());
+        Robotdrone Robot_drone = new Robotdrone(this.getLigne(), this.getColonne(), this.getVitesse());
         volume = Robot_drone.vider(simu, ligne, colonne, intensite, C);
         break;
 
@@ -301,7 +303,7 @@ public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
 
     @Override
     public String toString(){
-        return "Type : " +  this.GetTypeRobot().toString() + ", Case = (" + this.GetLigne() + ", " + this.GetColonne() + ")";
+        return "Type : " +  this.getTypeRobot().toString() + ", Case = (" + this.getLigne() + ", " + this.getColonne() + ")";
     }
 
 }

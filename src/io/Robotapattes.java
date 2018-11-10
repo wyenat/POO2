@@ -4,19 +4,12 @@ public class Robotapattes extends Robot {
 
   public Robotapattes(int lig, int col, double vitesse_deplacement){
     super(lig, col, vitesse_deplacement);
-    super.setReservoir(Double.POSITIVE_INFINITY); //POUDRE DONC INFINI
-    //Degueu mais je sais pas faire autrement
-    TypeRobot T;
-    String mmT = "PATTES";
-    T = TypeRobot.valueOf(mmT);
-    super.SetTypeRobot(T);
-    //
-
-
+    super.setReservoir(Double.POSITIVE_INFINITY);
+    super.setTypeRobot(TypeRobot.PATTES);
   }
 
-  public double GetVitesse(NatureTerrain Nature){
-    double vitesse = super.GetVitesse();
+  public double getVitesse(NatureTerrain Nature){
+    double vitesse = super.getVitesse();
     switch (Nature){
       case ROCHE:
       vitesse-=10;
@@ -49,12 +42,12 @@ public class Robotapattes extends Robot {
 
 
   public boolean testVider(Simulateur simu, int lig, int col, Case C){
-      Incendie[] incendies = simu.donnees.GetIncendies();
+      Incendie[] incendies = simu.donnees.getIncendies();
       boolean incendie_ici = false;
       Incendie incendie = incendies[0];
 
       for (int i=0; i<incendies.length; i++){
-        if (incendies[i].GetLigne()==lig && incendies[i].GetColonne()==col){
+        if (incendies[i].getLigne()==lig && incendies[i].getColonne()==col){
           incendie_ici = true;
           incendie = incendies[i];
 
@@ -62,7 +55,7 @@ public class Robotapattes extends Robot {
       }
       if (incendie_ici){
 
-        boolean test = (C.GetLigne() == incendie.GetLigne()) && (C.GetColonne() == incendie.GetColonne());
+        boolean test = (C.getLigne() == incendie.getLigne()) && (C.getColonne() == incendie.getColonne());
         return test;
       }
       return false;
@@ -84,7 +77,7 @@ public class Robotapattes extends Robot {
 
   public boolean test_deplacement(Case C){
     boolean possible = true;
-    switch (C.GetNature()){
+    switch (C.getNature()){
       case EAU:
         possible = false;
         break;

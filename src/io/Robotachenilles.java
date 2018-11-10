@@ -9,12 +9,12 @@ public class Robotachenilles extends Robot {
     TypeRobot T;
     String mmT = "CHENILLES";
     T = TypeRobot.valueOf(mmT);
-    super.SetTypeRobot(T);
+    super.setTypeRobot(T);
     //
   }
 
-  public double GetVitesse(NatureTerrain Nature){
-    double vitesse = super.GetVitesse();
+  public double getVitesse(NatureTerrain Nature){
+    double vitesse = super.getVitesse();
     switch (Nature){
         case FORET:
           vitesse-=10;
@@ -42,11 +42,11 @@ public class Robotachenilles extends Robot {
   }
 
   public boolean testRemplir(Simulateur simu, int lig, int col){
-      boolean test1 = (simu.getPosition(this).GetLigne() == lig+1)&&(simu.getPosition(this).GetColonne() == col);
-      boolean test2 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col-1);
-      boolean test3 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col+1);
-      boolean test4 = (simu.getPosition(this).GetLigne() == lig-1) && (simu.getPosition(this).GetColonne() == col);
-      boolean test5 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col);
+      boolean test1 = (simu.getPosition(this).getLigne() == lig+1)&&(simu.getPosition(this).getColonne() == col);
+      boolean test2 = (simu.getPosition(this).getLigne() == lig) && (simu.getPosition(this).getColonne() == col-1);
+      boolean test3 = (simu.getPosition(this).getLigne() == lig) && (simu.getPosition(this).getColonne() == col+1);
+      boolean test4 = (simu.getPosition(this).getLigne() == lig-1) && (simu.getPosition(this).getColonne() == col);
+      boolean test5 = (simu.getPosition(this).getLigne() == lig) && (simu.getPosition(this).getColonne() == col);
 
       return (test1 || test2 ||test3 || test4 ||test5);
 
@@ -82,18 +82,18 @@ public class Robotachenilles extends Robot {
 
 
   public boolean testVider(Simulateur simu, int lig, int col, Case C){
-    Incendie[] incendies = simu.donnees.GetIncendies();
+    Incendie[] incendies = simu.donnees.getIncendies();
     boolean incendie_ici = false;
     Incendie incendie = incendies[0];
     for (int i=0; i<incendies.length; i++){
-      if (incendies[i].GetLigne()==lig && incendies[i].GetColonne()==col){
+      if (incendies[i].getLigne()==lig && incendies[i].getColonne()==col){
         incendie_ici = true;
         incendie = incendies[i];
 
       }
     }
     if (incendie_ici){
-        boolean test = (C.GetLigne() == incendie.GetLigne()) && (C.GetColonne() == incendie.GetColonne());
+        boolean test = (C.getLigne() == incendie.getLigne()) && (C.getColonne() == incendie.getColonne());
         return test;
 
     }
@@ -103,7 +103,7 @@ public class Robotachenilles extends Robot {
 
   public boolean test_deplacement(Case C){
     boolean possible = true;
-    switch (C.GetNature()){
+    switch (C.getNature()){
       case EAU:
           possible = false;
           break;

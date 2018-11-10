@@ -27,15 +27,15 @@ public class Incendie{
     this.nb_litres_extinction = nbl;
   }
 
-  public int GetLigne(){
+  public int getLigne(){
       return this.ligne;
   }
 
-  public int GetColonne(){
+  public int getColonne(){
       return this.colonne;
   }
 
-  public double GetIntensite(){
+  public double getIntensite(){
       return this.nb_litres_extinction;
   }
 
@@ -44,11 +44,11 @@ public class Incendie{
   }
 
   public void draw_incendie(GUISimulator gui, int taille_case){
-      if (this.GetIntensite() == 0){
+      if (this.getIntensite() == 0){
         return;
       }
-      int x = taille_case/5 + (this.GetLigne())* taille_case;
-      int y =  taille_case/5 + (this.GetColonne())* taille_case;
+      int x = taille_case/5 + (this.getLigne())* taille_case;
+      int y =  taille_case/5 + (this.getColonne())* taille_case;
       int taille = 4 * taille_case/5;
       gui.addGraphicalElement(new ImageElement(y, x, "img/flammes.png", taille, taille, new Canvas()));
 

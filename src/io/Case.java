@@ -26,15 +26,15 @@ public class Case {
     this.nature = n;
   }
 
-  public int GetLigne(){
+  public int getLigne(){
     return this.ligne;
   }
 
-  public int GetColonne(){
+  public int getColonne(){
     return this.colonne;
   }
 
-  public NatureTerrain GetNature(){
+  public NatureTerrain getNature(){
       /**
        * Retourne la nature de la case
        */
@@ -43,42 +43,19 @@ public class Case {
 
   @Override
   public String toString(){
-    int lig = this.GetLigne();
-    int col = this.GetColonne();
-
+    int lig = this.getLigne();
+    int col = this.getColonne();
     return "(" + lig + "," + col + ")";
   }
 
   public void draw_case(GUISimulator gui, int taille_case){
-      // Color bords = Color.decode("#000000");
-      //
-      // String color_fond = "#ffffff";
-      // switch (this.GetNature()){
-      //     case EAU:
-      //         color_fond = "#a0edff"; break;
-      //     case FORET:
-      //         color_fond = "#87ff70"; break;
-      //     case ROCHE:
-      //         color_fond = "#808080"; break;
-      //     case HABITAT:
-      //         color_fond = 	"#ff9ec6"; break;
-      // }
-      // Color fond = Color.decode(color_fond);
-      //
-      // gui.addGraphicalElement(
-      //   new Rectangle(
-      //       taille_case/2 + this.colonne*taille_case, //abcisse du milieu de la case
-      //       taille_case/2 + this.ligne*taille_case, //ordonnee du milieu de la case
-      //       bords, //couleur des contours
-      //       fond, //Couleur du fond
-      //       taille_case, //largeur
-      //       taille_case //longueur
-      //   )
-      // );
-      int x = taille_case/10 + (this.GetLigne())* taille_case;
-      int y =  taille_case/10 + (this.GetColonne())* taille_case;
+      /**
+       * Dessine la case en question
+       */
+      int x = taille_case/10 + (this.getLigne())* taille_case;
+      int y =  taille_case/10 + (this.getColonne())* taille_case;
       int taille = taille_case;
-      switch (this.GetNature()){
+      switch (this.getNature()){
           case EAU:
             gui.addGraphicalElement(new ImageElement(y, x, "img/EAU.jpg", taille, taille, new Canvas()));
             break;

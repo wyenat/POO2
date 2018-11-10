@@ -8,10 +8,10 @@ public enum TypeRobot {
 
   private String name = "";
 
-  /**
-  Constructeur
-  */
   TypeRobot(String name){
+    /**
+    Constructeur
+    */
     this.name = name;
   }
 

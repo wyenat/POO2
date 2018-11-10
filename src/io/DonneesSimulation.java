@@ -16,34 +16,34 @@ public class DonneesSimulation{
         /**
          * Constucteur de DonneesSimulation
          */
-         this.SetCarte(c);
-         this.SetIncendies(i);
-         this.SetRobot(r);
+         this.setCarte(c);
+         this.setIncendies(i);
+         this.setRobot(r);
          this.fichier = file;
      }
 
 
-     public void SetCarte(Carte c){
+     public void setCarte(Carte c){
          this.carte =c ;
      }
 
-     public void SetIncendies(Incendie i[]){
+     public void setIncendies(Incendie i[]){
          this.incendies = i;
      }
 
-     public void SetRobot(Robot r[]){
+     public void setRobot(Robot r[]){
          this.robots = r;
      }
 
-     public Carte GetCarte(){
+     public Carte getCarte(){
          return this.carte;
      }
 
-     public Incendie[] GetIncendies(){
+     public Incendie[] getIncendies(){
          return this.incendies;
      }
 
-     public Robot[] GetRobots(){
+     public Robot[] getRobots(){
          return this.robots;
      }
 
@@ -53,9 +53,9 @@ public class DonneesSimulation{
          */
          String returned_string = "\n\n\t#Incendies";
          for (int i=0; i<incendies.length; i++){
-             returned_string += "\nIncendie " + i + ": Position : (" + incendies[i].GetLigne()
-                    + "," + incendies[i].GetColonne() + ")\tIntensité : "
-                    + incendies[i].GetIntensite();
+             returned_string += "\nIncendie " + i + ": Position : (" + incendies[i].getLigne()
+                    + "," + incendies[i].getColonne() + ")\tIntensité : "
+                    + incendies[i].getIntensite();
          }
          return returned_string;
     }
@@ -66,8 +66,8 @@ public class DonneesSimulation{
          */
          String stringReturned = "\n\n\t#Robots";
          for (int i=0; i<robots.length; i++){
-             stringReturned += "\nRobot " + i + ": Position : (" + robots[i].GetLigne()
-                    + "," + robots[i].GetColonne() + ")\t type : " + "\t Vitesse : " + robots[i].GetVitesse();
+             stringReturned += "\nRobot " + i + ": Position : (" + robots[i].getLigne()
+                    + "," + robots[i].getColonne() + ")\t type : " + "\t Vitesse : " + robots[i].getVitesse();
          }
          return stringReturned;
     }
@@ -86,13 +86,13 @@ public class DonneesSimulation{
          * Mets les paramètres Robots et Incendie de this aux états de nouvelle
          * SANS MODIFIER l'adresse des robots ou des incendies
          */
-         for (int len=0; len < this.GetRobots().length; len++){
-             this.GetRobots()[len].setLigne(nouvelle.GetRobots()[len].GetLigne());
-             this.GetRobots()[len].setColonne(nouvelle.GetRobots()[len].GetColonne());
-             this.GetRobots()[len].setReservoir(nouvelle.GetRobots()[len].getReservoir());
+         for (int len=0; len < this.getRobots().length; len++){
+             this.getRobots()[len].setLigne(nouvelle.getRobots()[len].getLigne());
+             this.getRobots()[len].setColonne(nouvelle.getRobots()[len].getColonne());
+             this.getRobots()[len].setReservoir(nouvelle.getRobots()[len].getReservoir());
          }
-         for (int len=0; len < this.GetIncendies().length; len++){
-             this.GetIncendies()[len].setIntensite(nouvelle.GetIncendies()[len].GetIntensite());
+         for (int len=0; len < this.getIncendies().length; len++){
+             this.getIncendies()[len].setIntensite(nouvelle.getIncendies()[len].getIntensite());
          }
      }
 }
