@@ -28,12 +28,15 @@ sujet:
 	java -classpath bin:bin/*  TestChefPompier cartes/carteSujet.map
 	
 desert:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestChefPompier.java
 	java -classpath bin:bin/*  TestChefPompier cartes/desertOfDeath-20x20.map
 	
 mush:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestChefPompier.java
 	java -classpath bin:bin/*  TestChefPompier cartes/mushroomOfHell-20x20.map
 	
 mad:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestChefPompier.java
 	java -classpath bin:bin/*  TestChefPompier cartes/spiralOfMadness-50x50.map
 
 clean:

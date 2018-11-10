@@ -56,7 +56,7 @@ public class Simulateur implements Simulable {
          while(iter.hasNext()){
              Evenement eve = iter.next();
              if (this.time <= eve.getDate() &  eve.getDate() < this.time + this.pas){
-                System.out.println(eve);
+                // System.out.println(eve);
                 eve.execute();
              }
          }

@@ -193,8 +193,13 @@ public class ChefPompier {
           /**
            * Eteind tous les incendies de la carte.
            */
-          while(true){
+          boolean fini = true;
+          while(fini){
               this.proposer_incendie_evolue();
+              fini = false;
+              for (int i=0; i < incendiesAffectes.length; i++){
+                  fini |= !incendiesAffectes[i];
+              }
           }
       }
 

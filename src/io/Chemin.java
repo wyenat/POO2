@@ -25,7 +25,6 @@ public class Chemin {
         this.possible = false;
         this.continuer_a_iterer = true;
         this.calculer();
-        afficherTrajet(this.liste_cases);
     }
 
     private int getDistanceTemp(Case courante, Simulateur simu){
@@ -63,16 +62,10 @@ public class Chemin {
                      }
                      Integer dist = new Integer(getDistanceTemp(current, this.getSimu()));
                      dist += distance_temporelle.get(current);
-                     if (distance_temporelle.containsKey(this.getArrivee())){
-                         if (distance_temporelle.get(this.getArrivee()) < dist){
-                             //Le chemin pour aller jusqu'à cette case est déjà plus long que
-                             // celui pour aller à l'arrivée, on ne poursuit pas.
-                             continue;
-                         }
-                     }
                      if (distance_temporelle.containsKey(voisine)){
                          if (dist < distance_temporelle.get(current)){
                              // Le temps est plus petit : un nouveau chemin est trouvé, et plus rapide
+                             System.out.println("Temps mis à jour !");
                              distance_temporelle.put(voisine, dist);
                              LinkedList<Case> chem = chemin_jusqua_case.get(current);
                              LinkedList<Case> nouv = new LinkedList<Case>();
@@ -86,17 +79,17 @@ public class Chemin {
                          }
                      }
                      else{
-                         // On ajoute dans le dico la case.
-                         distance_temporelle.put(voisine, dist);
-                         LinkedList<Case> chem = chemin_jusqua_case.get(current);
-                         LinkedList<Case> nouv = new LinkedList<Case>();
-                         int n = chem.size();
-                         for (int indice_copie=0; indice_copie < n; indice_copie++){
-                             nouv.add(chem.get(indice_copie));
-                         }
-                         nouv.add(voisine);
-                         chemin_jusqua_case.put(voisine, nouv);
-                         this.continuer_a_iterer = true;
+                         // On ajoute dans le dico la case
+                        distance_temporelle.put(voisine, dist);
+                        LinkedList<Case> chem = chemin_jusqua_case.get(current);
+                        LinkedList<Case> nouv = new LinkedList<Case>();
+                        int n = chem.size();
+                        for (int indice_copie=0; indice_copie < n; indice_copie++){
+                         nouv.add(chem.get(indice_copie));
+                        }
+                        nouv.add(voisine);
+                        chemin_jusqua_case.put(voisine, nouv);
+                        this.continuer_a_iterer = true;
                      }
                  }
              }
@@ -118,9 +111,9 @@ public class Chemin {
          Map<Case, LinkedList<Case>> chemin_jusqua_case = new HashMap<Case, LinkedList<Case>> ();
          int taille_tableau = this.getSimu().donnees.getCarte().getNbLignes()* this.getSimu().donnees.getCarte().getNbColonnes();
          // Début de l'itération
-         int i=0;
          LinkedList<Case> chemin_initial = new LinkedList<Case>();
          chemin_jusqua_case.put(depart, chemin_initial);
+         // System.out.println(this.getDepart() +" , " + this.getArrivee());
          while (this.continuer_a_iterer){
              this.iterer(distance_temporelle, chemin_jusqua_case);
          }
