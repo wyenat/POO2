@@ -46,13 +46,14 @@ public class Robotaroues extends Robot {
   }
 
   public boolean testRemplir(Simulateur simu, int lig, int col){
-    //   boolean test1 = (simu.getPosition(this).GetLigne() == lig+1)&&(simu.getPosition(this).GetColonne() == col);
-    //   boolean test2 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col-1);
-    //   boolean test3 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col+1);
-    //   boolean test4 = (simu.getPosition(this).GetLigne() == lig-1) && (simu.getPosition(this).GetColonne() == col);
-    //   System.out.println(test3);
-    //   return (test1 || test2 ||test3 || test4);
-    return true;
+      boolean test1 = (simu.getPosition(this).GetLigne() == lig+1)&&(simu.getPosition(this).GetColonne() == col);
+      boolean test2 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col-1);
+      boolean test3 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col+1);
+      boolean test4 = (simu.getPosition(this).GetLigne() == lig-1) && (simu.getPosition(this).GetColonne() == col);
+      boolean test5 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col);
+
+      return (test1 || test2 ||test3 || test4 ||test5);
+
       }
 
 

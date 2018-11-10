@@ -46,9 +46,10 @@ public class Robotachenilles extends Robot {
       boolean test2 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col-1);
       boolean test3 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col+1);
       boolean test4 = (simu.getPosition(this).GetLigne() == lig-1) && (simu.getPosition(this).GetColonne() == col);
+      boolean test5 = (simu.getPosition(this).GetLigne() == lig) && (simu.getPosition(this).GetColonne() == col);
 
-    //   return (test1 || test2 ||test3 || test4);
-        return true;
+      return (test1 || test2 ||test3 || test4 ||test5);
+
       }
 
   public double remplirReservoir(Simulateur simu, int ligne, int colonne){
