@@ -213,7 +213,7 @@ public class LecteurDonnees {
                 return pattes;
 
               case CHENILLES:
-                  Robot chenilles = new Robotdrone(lig, col, vitesse);
+                  Robot chenilles = new Robotachenilles(lig, col, vitesse);
                   return chenilles;
 
               default:

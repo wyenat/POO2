@@ -113,7 +113,6 @@ public class Chemin {
          // Début de l'itération
          LinkedList<Case> chemin_initial = new LinkedList<Case>();
          chemin_jusqua_case.put(depart, chemin_initial);
-         // System.out.println(this.getDepart() +" , " + this.getArrivee());
          while (this.continuer_a_iterer){
              this.iterer(distance_temporelle, chemin_jusqua_case);
          }

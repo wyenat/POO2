@@ -38,6 +38,9 @@ mush:
 mad:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestChefPompier.java
 	java -classpath bin:bin/*  TestChefPompier cartes/spiralOfMadness-50x50.map
+	
+docu:
+	javadoc io -sourcepath src -d ./doc 
 
 clean:
 	rm -rf bin/*.class

@@ -93,6 +93,7 @@ public class Simulateur implements Simulable {
                  return false;
              }
          }
+         System.out.println("Simulation terminée");
          return true;
     }
 
