@@ -22,6 +22,9 @@ public abstract class Robot {
   private TypeRobot type;
   private Etat etat;
 
+/**
+ * Cette classe gere toutes les donnees propres aux robots 
+ */
   public Robot(int lig, int col, double vitesse_deplacement){
     this.ligne = lig;
     this.colonne = col;
@@ -31,38 +34,65 @@ public abstract class Robot {
   }
 
 // sets & gets
+/**
+ * retourne la ligne du robot 
+ */
     public int getLigne(){
         return this.ligne;
     }
 
+/** 
+ * retourne la colonne du robot 
+ */
     public int getColonne(){
         return this.colonne;
     }
 
+/** 
+ * retourne l'etat du robot 
+ */
     public Etat getEtat(){
         return this.etat;
     }
 
-
+/**
+ * setter de l'etat du robot 
+ */
     public void setEtat(Etat etat){
         this.etat = etat;
     }
 
+/** 
+ * setter de la ligne du robot 
+ */
     public void setLigne(int ligne){
         this.ligne = ligne;
     }
 
+/** 
+ * setter de la colonne du robot 
+ */
     public void setColonne(int colonne){
         this.colonne = colonne;
     }
 
+/** 
+ * retourne la vitesse du robot
+ */
     public double getVitesse(){
       return this.vitesse_deplacement;
     }
 
+/** 
+ * retourne le reservoir du robot 
+ */
     public double getReservoir(){
       return this.reservoir;
     }
+    
+/** 
+ * setter du reservoir du robot 
+ */
     public void setReservoir(double reservoir){
         if (reservoir >= 0){
             this.reservoir = reservoir;
@@ -73,10 +103,16 @@ public abstract class Robot {
         }
     }
 
+/**
+ * sette de la vitesse du robot 
+ */
     public void setVitesse(double vitesse){
         this.vitesse_deplacement = vitesse;
     }
 
+/** 
+ * setter de la position du robot
+ */
     public void setPosition(Case Case){
       this.setLigne(Case.getLigne());
       this.setColonne(Case.getColonne());
@@ -110,7 +146,10 @@ public abstract class Robot {
     }
 
 // fin sets & gets
-
+    
+/** 
+ * renvoie true si le robot peut se rendre sur la case, false sinon
+ */
     public boolean test_deplacement(Case C){
       boolean boo = false;
       switch (this.getTypeRobot()) {
@@ -140,20 +179,27 @@ public abstract class Robot {
       return boo;
     }
 
+/**
+ * retourne le type du robot 
+ */
     public TypeRobot getTypeRobot(){
       return this.type;
     }
 
+/** 
+ * setter du type du robot 
+ */
     public void setTypeRobot(TypeRobot T){
       this.type = T;
     }
 
+/** 
+ * dessine le robot dans l'interface graphique 
+ */
     public void draw_robot(GUISimulator gui, int taille_case){
       int x = taille_case/5 + (this.getLigne())* taille_case;
       int y =  taille_case/5 + (this.getColonne())* taille_case;
       int taille = 4 * taille_case/5;
-
-      /*A FINIR*/
       switch (this.getTypeRobot()){
           case DRONE:
               gui.addGraphicalElement(new ImageElement(y, x, "img/drone.png", taille, taille, new Canvas()));
@@ -170,6 +216,9 @@ public abstract class Robot {
       }
     }
 
+/** 
+ * retourne la date de fin de vidage du robot 
+ */
     public long getDatevider(Simulateur simu){
         double volume = 0;
         int ligne = simu.getPosition(this).getLigne();
@@ -210,7 +259,9 @@ public abstract class Robot {
       return Date;
     }
 
-
+/** 
+ * retourne la date de fin de remplissage du robot 
+ */
     public long getDateremplir(){
       long Date = 0;
       switch (this.getTypeRobot()) {
@@ -240,6 +291,9 @@ public abstract class Robot {
       return Date;
     }
 
+/** 
+ * remplit le reservoir du robot 
+ */
     public double remplirReservoir(Simulateur simu, int ligne, int colonne){
         double volume = 0;
         switch (this.getTypeRobot()) {
@@ -268,11 +322,12 @@ public abstract class Robot {
         return volume;
       }
 
-
+/** 
+ * vide le robot de l'intensite voulue 
+ */
 public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
     double volume = 0;
     Case C = simu.getPosition(this);
-    // System.out.println(C);
     switch (this.getTypeRobot()) {
       case ROUES:
         Robotaroues Robot_roue = new Robotaroues(this.getLigne(), this.getColonne(), this.getVitesse());
@@ -297,7 +352,6 @@ public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
       default:
         break;
     }
-    // System.out.println("VOLUME" + volume);
     return volume;
   }
 

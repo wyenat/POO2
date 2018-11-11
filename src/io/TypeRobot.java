@@ -1,5 +1,8 @@
 package io;
 
+/**
+ * Classe contenant tous les types de robots possibles 
+ */
 public enum TypeRobot {
   DRONE ("DRONE"),
   ROUES ("ROUES"),

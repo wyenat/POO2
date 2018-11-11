@@ -11,33 +11,41 @@ import gui.Rectangle;
 import gui.Simulable;
 import gui.Text;
 
-
+/**
+ * Contient les donnees des cases 
+ */
 public class Case {
   private int ligne;
   private int colonne;
   private NatureTerrain nature;
 
+  /**
+  Constructeur de la case
+  */
   public Case(int l, int c, NatureTerrain n){
-    /**
-    Constructeur de la case
-    */
     this.ligne = l;
     this.colonne = c;
     this.nature = n;
   }
 
+  /**
+  * retourne la ligne de la case 
+  */
   public int getLigne(){
     return this.ligne;
   }
 
+  /**
+   * retourne la colonne de la case 
+   */
   public int getColonne(){
     return this.colonne;
   }
 
+  /**
+  * Retourne la nature de la case
+  */
   public NatureTerrain getNature(){
-      /**
-       * Retourne la nature de la case
-       */
        return this.nature;
   }
 
@@ -48,10 +56,10 @@ public class Case {
     return "(" + lig + "," + col + ")";
   }
 
+  /**
+  * Dessine la case
+  */
   public void draw_case(GUISimulator gui, int taille_case){
-      /**
-       * Dessine la case en question
-       */
       int x = taille_case/10 + (this.getLigne())* taille_case;
       int y =  taille_case/10 + (this.getColonne())* taille_case;
       int taille = taille_case;

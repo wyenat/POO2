@@ -2,11 +2,11 @@ package io;
 
 import java.util.*;
 
+/**
+*  Cette classe sert à trouver le plus court chemin,s'il existe pour le 
+* robot entre,  entre la case d'arrivee et de celle de depart.
+*/
 public class Chemin {
-    /**
-     *  Cette classe sert à trouver le plus court chemin,s'il existe pour le 
-     * robot entré,  entre la case d'arrivée et de celle de départ.
-     */
     private Case depart;
     private Case arrivee;
     private Robot robot;
@@ -16,6 +16,9 @@ public class Chemin {
     public boolean possible;
     public boolean continuer_a_iterer;
 
+/** 
+ * Constructeur de la classe 
+ */
     public Chemin(Case d, Case a, Robot r, Simulateur s){
         this.setDepart(d);
         this.setArrivee(a);
@@ -27,27 +30,27 @@ public class Chemin {
         this.calculer();
     }
 
+    /**
+    * Calcule le temps que met le robot à aller à une autre case depuis
+    * la case depart
+    */
     private int getDistanceTemp(Case courante, Simulateur simu){
-        /**
-         * Calcule le temps que met le robot à aller à une autre case depuis
-         * la case départ
-         */
          return (simu.donnees.getCarte().getTailleCases()/ (int) this.getRobot().getVitesse());
     }
 
 
+    /**
+    * Pour toutes les cases dejà dans la table, visite les voisins, note 
+    * le temps et le chemin emprunte pour s'y rendre, et les rentre dans 
+    * les dictionnaires.
+    * On cesse d'iterer lorsque les dictionnaires sont invariants par 
+    * cette fonction.
+    */
     private void iterer(Map<Case, Integer> distance_temporelle, Map<Case, LinkedList<Case>> chemin_jusqua_case){
-        /**
-         * Pour toutes les cases déjà dans la table, visite les voisins, note 
-         * le temps et le chemin emprunté pour s'y rendre, et les rentre dans 
-         * les dictionnaires.
-         * On cesse d'iterer lorsque les dictionnaires sont invariants par 
-         * cette fonction.
-         */
          this.continuer_a_iterer = false;
          Iterator<Case> cases = distance_temporelle.keySet().iterator();
          int size = distance_temporelle.keySet().size();
-         // Mise en place d'une copie car on modifie l'itérateur lors du parcourt
+         // Mise en place d'une copie car on modifie l'iterateur lors du parcourt
          Case[] copie = new Case[size];
          for (int indice = size; indice>0; indice--){
              copie[size-indice] = cases.next();
@@ -64,7 +67,7 @@ public class Chemin {
                      dist += distance_temporelle.get(current);
                      if (distance_temporelle.containsKey(voisine)){
                          if (dist < distance_temporelle.get(current)){
-                             // Le temps est plus petit : un nouveau chemin est trouvé, et plus rapide
+                             // Le temps est plus petit : un nouveau chemin est trouve, et plus rapide
                              System.out.println("Temps mis à jour !");
                              distance_temporelle.put(voisine, dist);
                              LinkedList<Case> chem = chemin_jusqua_case.get(current);
@@ -96,21 +99,21 @@ public class Chemin {
          }
      }
 
+     /**
+     * Calcule le plus court chemin entre d et a
+     */
     private void calculer(){
-        /**
-         * Calcule le plus court chemin entre d et a
-         */
          this.continuer_a_iterer = true;
          Case depart = this.getDepart();
          Case arrivee = this.getArrivee();
-         // Création du dictionnaire contenant le temps pour aller dans toutes les autres cases depuis le départ
+         // Creation du dictionnaire contenant le temps pour aller dans toutes les autres cases depuis le depart
          Map<Case, Integer> distance_temporelle = new HashMap<Case, Integer> ();
          distance_temporelle.put(depart, 0);
-         // Création du dictionnaire contenant la file des cases à parcourir pour aller à la case voulue depuis le départ
+         // Creation du dictionnaire contenant la file des cases à parcourir pour aller à la case voulue depuis le depart
          // en temps optimal
          Map<Case, LinkedList<Case>> chemin_jusqua_case = new HashMap<Case, LinkedList<Case>> ();
          int taille_tableau = this.getSimu().donnees.getCarte().getNbLignes()* this.getSimu().donnees.getCarte().getNbColonnes();
-         // Début de l'itération
+         // Debut de l'iteration
          LinkedList<Case> chemin_initial = new LinkedList<Case>();
          chemin_jusqua_case.put(depart, chemin_initial);
          while (this.continuer_a_iterer){
@@ -123,10 +126,10 @@ public class Chemin {
          }
     }
 
+    /**
+    * Creation des evenements pour que le robot se deplace
+    */
     public void deplacement(){
-        /**
-         * Création des événements pour que le robot se déplace
-         */
         Case prece = this.getSimu().getPosition(this.getRobot());//this.getSimu().donnees.getCarte().getTableauDeCases()[this.getRobot().getLigne()* this.getSimu().donnees.getCarte().getNbColonnes()+this.getRobot().getColonne()];
         for (int i = 0; i<this.getSimu().donnees.getCarte().getNbLignes(); i++){
             for (int j=0; j<this.getSimu().donnees.getCarte().getNbColonnes(); j++){
@@ -144,22 +147,22 @@ public class Chemin {
         }
     }
 
+    /**
+    * Affiche le trajet emprunte pour aller à la case d'arrivee en temps 
+    * minimal 
+    */
     public void afficherTrajet(LinkedList<Case> trajet){
-        /**
-         * Affiche le trajet emprunté pour aller à la case d'arrivée en temps 
-         * minimal 
-         */
         int n = trajet.size();
         for (int indice=0; indice < n; indice++){
             System.out.println(trajet.get(indice));
         }
     }
 
+    /**
+    * Permet de trouver où se trouve cardinalement la case endroit par 
+    * rapport à la case prece
+    */ 
     private Direction trouverDirection(Simulateur simu, Case prece, Case endroit){
-        /**
-         * Permet de trouver où se trouve cardinalement la case endroit par 
-         * rapport à la case prece
-         */ 
         int ligne_robot = prece.getLigne();
         int col_robot = prece.getColonne();
         Direction dir = Direction.SUD;
@@ -172,42 +175,72 @@ public class Chemin {
     }
 
     // Set et get...
+    /**
+     * Setter de case de depart 
+     */
     public void setDepart(Case d){
     this.depart = d;
     }
 
+    /**
+     * retourne la case depart 
+     */
     public Case getDepart(){
     return this.depart;
     }
 
+    /**
+     * setter de la case d'arrivee
+     */
     public void setArrivee(Case a){
     this.arrivee = a;
     }
-
+    
+    /** 
+     * retourne la case d'arrivee
+     */
     public Case getArrivee(){
     return this.arrivee;
     }
 
+    /**
+     * retourne le robot concerne par le chemin 
+     */
     public Robot getRobot(){
     return this.robot;
     }
     
+    /** 
+     * retourne la simulation 
+     */
     public Simulateur getSimu(){
     return this.simu;
     }
 
+    /** 
+     * retourne la liste des cases empruntes par le chemin 
+     */
     public LinkedList<Case> getListeCases(){
         return this.liste_cases;
     }
 
+    /**
+     * setter de liste_cases 
+     */
     public void setListeCases(LinkedList<Case> liste){
         this.liste_cases = liste;
     }
 
+    /** 
+     * retourne le temps mis pour aller jusqu'a l'arrivee par ce chemin 
+     */
     public long getTemps(){
         return this.temps;
     }
 
+    /** 
+     * setter de temps 
+     */
     public void setTemps(long time){
         this.temps = time;
     }

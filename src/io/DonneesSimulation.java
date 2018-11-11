@@ -3,6 +3,9 @@ package io;
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
 
+/** 
+ * Classe qui contient les donnees contenues dans le .map  
+ */
 public class DonneesSimulation{
 
     private Carte carte;
@@ -10,60 +13,77 @@ public class DonneesSimulation{
     private Robot[] robots;
     public String fichier;
 
+    /**
+    * Constucteur de DonneesSimulation
+    */
     public DonneesSimulation(Carte c, Incendie i[], Robot r[], String file)
     throws FileNotFoundException, DataFormatException
     {
-        /**
-         * Constucteur de DonneesSimulation
-         */
          this.setCarte(c);
          this.setIncendies(i);
          this.setRobot(r);
          this.fichier = file;
      }
 
-
+/**
+ * Setter de case 
+ */
      public void setCarte(Carte c){
          this.carte =c ;
      }
 
+/**
+ * Setter d'incendie 
+ */
      public void setIncendies(Incendie i[]){
          this.incendies = i;
      }
 
+/** 
+ * Setter de robot 
+ */
      public void setRobot(Robot r[]){
          this.robots = r;
      }
 
+/** 
+ * Retourne la carte 
+ */
      public Carte getCarte(){
          return this.carte;
      }
 
+/** 
+ * retourne la liste des incendies 
+ */
      public Incendie[] getIncendies(){
          return this.incendies;
      }
 
+/** 
+ * Retourne la liste des robots 
+ */
      public Robot[] getRobots(){
          return this.robots;
      }
 
+     /**
+     * Affiche textuellement les incendies
+     */
     private static String AfficherIncendies(Incendie[] incendies){
-        /**
-         * Affiche textuellement les incendies
-         */
          String returned_string = "\n\n\t#Incendies";
          for (int i=0; i<incendies.length; i++){
              returned_string += "\nIncendie " + i + ": Position : (" + incendies[i].getLigne()
-                    + "," + incendies[i].getColonne() + ")\tIntensité : "
+                    + "," + incendies[i].getColonne() + ")\tIntensite : "
                     + incendies[i].getIntensite();
          }
          return returned_string;
     }
 
+    /**
+    * Affiche textuellement les robots
+    */
     private static String AfficherRobots(Robot[] robots){
-        /**
-         * Affiche textuellement les robots
-         */
          String stringReturned = "\n\n\t#Robots";
          for (int i=0; i<robots.length; i++){
              stringReturned += "\nRobot " + i + ": Position : (" + robots[i].getLigne()
@@ -72,20 +92,20 @@ public class DonneesSimulation{
          return stringReturned;
     }
 
+    /**
+    * Affiche textuellement les DonneesSimulation
+    */
     public String afficher(){
-        /**
-         * Affiche textuellement les DonneesSimulation
-         */
         String stringReturned = "\t #Carte" + this.carte.ToString();
         stringReturned += AfficherIncendies(this.incendies) + AfficherRobots(this.robots);
         return stringReturned;
     }
 
+    /**
+    * Mets les paramètres Robots et Incendie de this aux etats de nouvelle
+    * SANS MODIFIER l'adresse des robots ou des incendies
+    */
     public void RemettreInitial(DonneesSimulation nouvelle){
-        /**
-         * Mets les paramètres Robots et Incendie de this aux états de nouvelle
-         * SANS MODIFIER l'adresse des robots ou des incendies
-         */
          for (int len=0; len < this.getRobots().length; len++){
              this.getRobots()[len].setLigne(nouvelle.getRobots()[len].getLigne());
              this.getRobots()[len].setColonne(nouvelle.getRobots()[len].getColonne());

@@ -2,10 +2,15 @@
 package io;
 
 
-
+/** 
+ * Cette classe gere les evenements lies au deversage de l'eau dans les robots 
+ * sur les incendie  
+ */
 public class EvenementDeverserEau extends Evenement {
 
-
+/** 
+ * Constucteur de la classe 
+ */
   public EvenementDeverserEau(Simulateur simu, Robot robot){
     super(robot, simu, robot.getDatevider(simu), TypeEvenement.DeverserEau);
     int ligne = super.getSimu().getPosition(robot).getLigne();

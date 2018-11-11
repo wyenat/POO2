@@ -11,11 +11,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+/**
+ * Classe responsable de l'etablissement des strategies mises en place 
+ * pour eteindre les incendies 
+ */
 public class ChefPompier {
     public Simulateur simu;
     public boolean[] incendiesAffectes;
 
+    /**
+     * Constructeur de la classe 
+     */
     public ChefPompier(Simulateur simu){
         this.simu = simu;
         this.incendiesAffectes = new boolean[simu.donnees.getIncendies().length];
@@ -24,11 +30,11 @@ public class ChefPompier {
         }
     }
 
+    /**
+    * Retourne le point d'eau le plus proche de de la case arrivee, 
+    * accessible par le robot.
+    */
     private Chemin trouverPointDeau(Case arrivee, Robot robo){
-        /**
-         * Retourne le point d'eau le plus proche de de la case arrivee, 
-         * accessible par le robot.
-         */
          LinkedList<Case> casesDeau = new LinkedList<Case>();
          int nb_cases = this.simu.donnees.getCarte().getNbLignes() * this.simu.donnees.getCarte().getNbColonnes();
          for (int c=0; c < nb_cases; c++){
@@ -62,10 +68,10 @@ public class ChefPompier {
          return chem_candidat;
     }
 
+    /**
+    * Fais aller le robot à l'incendie, et l'eteindre.
+    */
     private void traiterIncendie(Chemin chem, Incendie incendie){
-      /**
-       * Fais aller le robot à l'incendie, et l'éteindre.
-       */
       double reservoir = simu.getReservoir(chem.getRobot());
       double intensite = incendie.getIntensite();
       Chemin pointEau = trouverPointDeau(chem.getArrivee(), chem.getRobot());
@@ -105,11 +111,11 @@ public class ChefPompier {
 
     }
 
+    /** 
+    * Assigne les robots aux incendies de la carte selon l'argorithme 
+    * propose.
+    */ 
     public void proposer_incendie_naif(){
-        /** 
-         * Assigne les robots aux incendies de la carte selon l'argorithme 
-         * proposé.
-         */ 
         Incendie[] incendies =this.simu.donnees.getIncendies();
         Robot[] robots =this.simu.donnees.getRobots();
         for (int incendie_indice = 0; incendie_indice < this.incendiesAffectes.length; incendie_indice++){
@@ -141,10 +147,10 @@ public class ChefPompier {
     }
 
 
+    /**
+    * Assigne les robots aux incendies selon le deuxième algorithme propose
+    */
     public void proposer_incendie_evolue(){
-        /**
-         * Assigne les robots aux incendies selon le deuxième algorithme proposé
-         */
         Incendie[] incendies = this.simu.donnees.getIncendies();
         Robot[] robots = this.simu.donnees.getRobots();
         Robot candidat = null;
@@ -189,10 +195,10 @@ public class ChefPompier {
        }
       }
 
+      /**
+      * Eteind tous les incendies de la carte.
+      */
       public void extinction(){
-          /**
-           * Eteind tous les incendies de la carte.
-           */
           boolean fini = true;
           while(fini){
               this.proposer_incendie_evolue();

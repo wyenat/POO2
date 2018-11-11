@@ -1,5 +1,8 @@
 package io;
 
+/** 
+ * Classe contenants tous les types d'evenements possibles 
+ */
 public enum TypeEvenement {
   DeverserEau ("DeverserEau"),
   deplacement ("deplacement"),

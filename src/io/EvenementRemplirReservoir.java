@@ -1,9 +1,13 @@
 package io;
 
-
+/**
+ * Cette classe gere les evenements liess aux remplissage du reservoir du robot 
+ */
 public class EvenementRemplirReservoir extends Evenement {
 
-
+/**
+ * Constucteur de la classe 
+ */
   public EvenementRemplirReservoir(Simulateur simu, Robot robot){
     super(robot, simu, robot.getDateremplir(), TypeEvenement.remplirReservoir);
     double volume = robot.remplirReservoir(super.getSimu(), super.getSimu().getPosition(robot).getLigne(), super.getSimu().getPosition(robot).getColonne());

@@ -1,5 +1,8 @@
 package io;
 
+/**
+ * Classe contenant les directions cardinales 
+ */
 public enum Direction {
     NORD ("NORD"),
     EST ("EST"),
@@ -8,6 +11,9 @@ public enum Direction {
 
     private String name = "";
 
+/**
+ * Constructeur 
+ */
     Direction(String nom){
         this.name = nom;
     }

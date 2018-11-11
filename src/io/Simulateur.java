@@ -14,6 +14,10 @@ import gui.Rectangle;
 import gui.Simulable;
 import gui.Text;
 
+/**
+ * Classe contenant toutes les donnees pour la simulation. 
+ * Depuis cette classe, on peut acceder à toutes les autres 
+ */
 public class Simulateur implements Simulable {
 
     public DonneesSimulation donnees;
@@ -27,10 +31,10 @@ public class Simulateur implements Simulable {
 
     public GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
 
+    /**
+    *  Les les donnees dans data, et cree la simulation associee.
+    */
     public Simulateur(DonneesSimulation data) {
-        /**
-         *  Les les données dans data, et crée la simulation associée.
-         */
         gui.setSimulable(this);	
         this.donnees = data;
         this.time = 0;
@@ -47,11 +51,11 @@ public class Simulateur implements Simulable {
         draw();
     }
 
+    /** 
+    * Trouve dans la liste des evènements ceux dont la date est passee,
+    * et les execute
+    */
     public void executeEvenements(){
-        /** 
-         * Trouve dans la liste des évènements ceux dont la date est passée,
-         * et les execute
-         */
          Iterator<Evenement> iter = evenements.iterator();
          while(iter.hasNext()){
              Evenement eve = iter.next();
@@ -62,17 +66,17 @@ public class Simulateur implements Simulable {
          }
     }
 
+    /**
+    * Ajoute un evènement
+    */
     public void addEvenement(Evenement e){
-        /**
-         * Ajoute un évènement
-         */
          this.evenements.add(e);
     }
 
+    /**
+    * Affiche les Evenements dans le tableau d'evènements
+    */
     public void AfficherEvenements(){
-        /**
-         * Affiche les Evenements dans le tableau d'évènements
-         */
          Iterator<Evenement> iter = evenements.iterator();
          int i=0;
          while (iter.hasNext()){
@@ -82,10 +86,10 @@ public class Simulateur implements Simulable {
          }
     }
 
+    /**
+    * Retourne true s'il n'y a plus d'evènements en cours
+    */
     private boolean simulationTerminee(){
-        /**
-         * Retourne true s'il n'y a plus d'évènements en cours
-         */
          Iterator<Evenement> iter = evenements.iterator();
          while (iter.hasNext()){
              Evenement eve = iter.next();
@@ -93,15 +97,15 @@ public class Simulateur implements Simulable {
                  return false;
              }
          }
-         System.out.println("Simulation terminée");
+         System.out.println("Simulation terminee");
          return true;
     }
 
+    /**
+    * Avance la simulation d'un pas de temps, si elle n'est pas finie.
+    */
     @Override
     public void next() {
-      /**
-       * Avance la simulation d'un pas de temps, si elle n'est pas finie.
-       */
 
        if (simulationTerminee()){
        }
@@ -113,11 +117,11 @@ public class Simulateur implements Simulable {
 
     }
 
+    /**
+    * Replace la simulation dans les conditions initiales
+    */
     @Override
     public void restart(){
-      /**
-       * Replace la simulation dans les conditions initiales
-       */
       this.time = 0;
       try{
           DonneesSimulation data_init = LecteurDonnees.lire(this.donnees.fichier);
@@ -132,10 +136,10 @@ public class Simulateur implements Simulable {
     }
 
 
+    /**
+    * Dessine la simulation dans l'interface graphique 
+    */
     private void draw(){
-        /**
-         * Dessine la simulation 
-         */
       Carte cart = this.donnees.getCarte();
       int nb_lignes = cart.getNbLignes();
       int nb_colonnes = cart.getNbColonnes();
@@ -156,10 +160,10 @@ public class Simulateur implements Simulable {
       }
     }
 
+    /**
+    * Retourne la position du robot entre, en case.
+    */
     public Case getPosition(Robot robot){
-        /**
-         * Retourne la position du robot entré, en case.
-         */
         Case C=null;
         for (int i = 0; i<this.donnees.getRobots().length; i++){
             if (this.donnees.getRobots()[i]==robot){
@@ -172,10 +176,10 @@ public class Simulateur implements Simulable {
 
     }
 
+    /**
+    * Met le robot à la case rentree
+    */
     public void setPosition(Robot robot, Case C){
-        /**
-         * Met le robot à la case rentrée
-         */
         for (int i = 0; i<this.donnees.getRobots().length; i++){
             if (this.donnees.getRobots()[i]==robot){
 
@@ -185,10 +189,10 @@ public class Simulateur implements Simulable {
         }
     }
 
+    /** 
+    * Retourne le reservoir du robot 
+    */
     public double getReservoir(Robot robot){
-        /** 
-         * Retourne le reservoir du robot 
-         */
         double volume=0;
         for (int i = 0; i<this.donnees.getRobots().length; i++){
             if (this.donnees.getRobots()[i]==robot){
@@ -201,10 +205,10 @@ public class Simulateur implements Simulable {
 
     }
 
+    /**
+    * Met le volume entre dans le reservoir du robot
+    */
     public void setReservoir(Robot robot, double volume){
-        /**
-         * Met le volume entré dans le reservoir du robot
-         */
         for (int i = 0; i<this.donnees.getRobots().length; i++){
             if (this.donnees.getRobots()[i]==robot){
 

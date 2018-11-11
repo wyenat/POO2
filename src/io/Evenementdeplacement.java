@@ -1,11 +1,15 @@
 package io;
 
-
+/**
+ * Cette classe gere les evenements lies aux  deplacements des robots 
+ */
 public class Evenementdeplacement extends Evenement {
   private Direction direction;
   private Case Case;
 
-
+/**
+ * Constructeur de la classe 
+ */
   public Evenementdeplacement(Simulateur simu, Robot robot, Direction direction){
     super(robot, simu, ((long) simu.donnees.getCarte().getTailleCases()/ (long) robot.getVitesse()), TypeEvenement.deplacement);
     this.Case = simu.donnees.getCarte().getTableauDeCases()[0];

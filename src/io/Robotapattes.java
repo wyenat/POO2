@@ -1,7 +1,13 @@
 package io;
 
+/** 
+ * Classe gerant les comportement des robots à pattes
+ */
 public class Robotapattes extends Robot {
 
+  /** 
+  * Constucteur de la classe 
+  */
   public Robotapattes(int lig, int col, double vitesse_deplacement){
     super(lig, col, vitesse_deplacement);
     super.setReservoir(Double.POSITIVE_INFINITY);
@@ -40,7 +46,9 @@ public class Robotapattes extends Robot {
   }
 
 
-
+/** 
+ * renvoie true si le robot peut se vider ici, false sinon
+ */
   public boolean testVider(Simulateur simu, int lig, int col, Case C){
       Incendie[] incendies = simu.donnees.getIncendies();
       boolean incendie_ici = false;

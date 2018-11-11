@@ -1,9 +1,13 @@
 package io;
 import io.*;
 
-
+/**
+ * Classe gérant le comportement des robots drones 
+ */
 public class Robotdrone extends Robot{
-
+  /** 
+   * Constucteur de classe 
+   */
   public Robotdrone(int lig, int col, double vitesse_deplacement){
     super(lig, col, vitesse_deplacement);
     super.setReservoir(10000);
@@ -14,6 +18,9 @@ public class Robotdrone extends Robot{
     return 30*60;
   }
 
+/** 
+ * renvoie true si le robot peut se remplir ici, false sinon 
+ */
   public boolean testRemplir(Simulateur simu, int lig, int col){
     if (simu.getPosition(this).getLigne() == lig && simu.getPosition(this).getColonne() == col){
         return true;
@@ -47,7 +54,9 @@ public class Robotdrone extends Robot{
   }
 
 
-
+/**
+ * renvoie true si le robot peut se vider ici, false sinon 
+ */
   public boolean testVider(Simulateur simu, int lig, int col, Case C){
     Incendie[] incendies = simu.donnees.getIncendies();
     boolean incendie_ici = false;

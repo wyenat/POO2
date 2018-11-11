@@ -1,8 +1,12 @@
 package io;
 
-
+/** 
+ * Classe gérant les comportements des robots à roues 
+ */
 public class Robotaroues extends Robot {
-
+  /** 
+   * Constucteur de la classe 
+   */
   public Robotaroues(int lig, int col, double vitesse_deplacement){
     super(lig, col, vitesse_deplacement);
     super.setReservoir(5000);
@@ -39,6 +43,9 @@ public class Robotaroues extends Robot {
     return 0;
   }
 
+/** 
+ * test si le robot à roues peut se remplir ici 
+ */
   public boolean testRemplir(Simulateur simu, int lig, int col){
       boolean test1 = (simu.getPosition(this).getLigne() == lig+1)&&(simu.getPosition(this).getColonne() == col);
       boolean test2 = (simu.getPosition(this).getLigne() == lig) && (simu.getPosition(this).getColonne() == col-1);
@@ -74,7 +81,9 @@ public class Robotaroues extends Robot {
     return 0;
   }
 
-
+/**
+ * renvoie true si le robot peut se vider ici, false sinon
+ */
   public boolean testVider(Simulateur simu, int lig, int col, Case C){
     Incendie[] incendies = simu.donnees.getIncendies();
     boolean incendie_ici = false;
