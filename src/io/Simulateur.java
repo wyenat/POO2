@@ -29,7 +29,7 @@ public class Simulateur implements Simulable {
     public Case[] positions;
     public double[] reservoirs;
 
-    public GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
+    public GUISimulator gui = new GUISimulator(1024, 800, Color.BLACK);
 
     /**
     *  Les les donnees dans data, et cree la simulation associee.
@@ -97,7 +97,6 @@ public class Simulateur implements Simulable {
                  return false;
              }
          }
-        //  System.out.println("Simulation terminee");
          return true;
     }
 
@@ -111,9 +110,12 @@ public class Simulateur implements Simulable {
        }
        else{
           this.time += this.pas;
-        //   if (this.time %20 == 0){
-        //   System.out.println(this.time);
+        //   if (this.time == this.pas){
+        //       AfficherEvenements();
         //     }
+            // for (int i=0; i < this.donnees.getIncendies().length ; i++){
+            // System.out.println("Incendie " + i + " : il reste " + this.donnees.getIncendies()[i]);
+            // }
           executeEvenements();
           draw();
       }
@@ -129,6 +131,14 @@ public class Simulateur implements Simulable {
       try{
           DonneesSimulation data_init = LecteurDonnees.lire(this.donnees.fichier);
           this.donnees.RemettreInitial(data_init);
+          this.positions = new Case[this.donnees.getRobots().length];
+          this.reservoirs = new double[this.donnees.getRobots().length];
+          for (int i =0; i<this.donnees.getRobots().length; i++){
+              int lig = this.donnees.getRobots()[i].getLigne();
+              int col = this.donnees.getRobots()[i].getColonne();
+              this.positions[i] = this.donnees.getCarte().getTableauDeCases()[lig* this.donnees.getCarte().getNbColonnes()+col];
+              this.reservoirs[i] = this.donnees.getRobots()[i].getReservoir();
+          }
           draw();
           AfficherEvenements();
       }
@@ -171,7 +181,6 @@ public class Simulateur implements Simulable {
         Case C=null;
         for (int i = 0; i<this.donnees.getRobots().length; i++){
             if (this.donnees.getRobots()[i]==robot){
-
                 C = this.positions[i];
                 break;
             }

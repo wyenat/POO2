@@ -156,7 +156,7 @@ public class ChefPompier {
         for (int incendie_indice = 0; incendie_indice < this.incendiesAffectes.length; incendie_indice++){
           Chemin chemin_candidat = null;
             for (int robot_indice = 0; robot_indice < this.simu.donnees.getRobots().length; robot_indice++){
-              if (!this.incendiesAffectes[incendie_indice]){
+              if (!this.incendiesAffectes[incendie_indice] & robots[robot_indice].getEtat()!= Etat.INUTILE){
               long tempsmin = -1;
                 if (robots[robot_indice].getEtat() == Etat.LIBRE){
                     Carte map =this.simu.donnees.getCarte();
@@ -191,6 +191,12 @@ public class ChefPompier {
             }
         }
        }
+       for (int indice_robot = 0; indice_robot < robots.length ; indice_robot++){
+           if (robots[indice_robot].getEtat() == Etat.LIBRE){
+               //Si le robot n'a pas de chemin au dernier incendie, il ne sert plus
+               robots[indice_robot].setEtat(Etat.INUTILE);
+           }
+       }
       }
 
       /**
@@ -199,19 +205,23 @@ public class ChefPompier {
       public void extinction(){
           boolean fini = true;
           int intensite = 0;
+          boolean afficher = true;
           while(fini | intensite != 0 ){
               this.proposer_incendie_evolue();
-            // this.proposer_incendie_naif();
               fini = false;
               intensite = 0;
               for (int i=0; i < incendiesAffectes.length; i++){
                   fini |= !incendiesAffectes[i];
                   intensite += this.simu.donnees.getIncendies()[i].getIntensite();
               }
+              if (afficher){
+                  System.out.println(" Vous pouvez appuyer sur lecture ! :)");
+                  afficher = false;
+              }
           }
-          for (int i=0; i < this.simu.donnees.getIncendies().length ; i++){
-              System.out.println("Incendie " + i + " : il reste " + this.simu.donnees.getIncendies()[i]);
-          }
+        //   for (int i=0; i < this.simu.donnees.getIncendies().length ; i++){
+        //       System.out.println("Incendie " + i + " : il reste " + this.simu.donnees.getIncendies()[i]);
+        //   }
           System.out.println("Simulation Terminée ! :)");
       }
 

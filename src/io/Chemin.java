@@ -3,7 +3,7 @@ package io;
 import java.util.*;
 
 /**
-*  Cette classe sert a trouver le plus court chemin,s'il existe pour le 
+*  Cette classe sert a trouver le plus court chemin,s'il existe pour le
 * robot entre,  entre la case d'arrivee et de celle de depart.
 */
 public class Chemin {
@@ -28,6 +28,7 @@ public class Chemin {
         this.possible = false;
         this.continuer_a_iterer = true;
         this.calculer();
+        // System.out.println("Pour le robot : " + robot + " le chemin est possible : " + this.possible);
     }
 
     /**
@@ -40,7 +41,7 @@ public class Chemin {
 
 
     /**
-    * Pour toutes les cases deja dans la table, visite les voisins, note 
+    * Pour toutes les cases deja dans la table, visite les voisins, note
     * le temps et le chemin emprunte pour s'y rendre, et les rentre dans
     * les dictionnaires.
     * On cesse d'iterer lorsque les dictionnaires sont invariants par
@@ -148,7 +149,7 @@ public class Chemin {
     }
 
     /**
-    * Affiche le trajet emprunte pour aller a la case d'arrivee en temps 
+    * Affiche le trajet emprunte pour aller a la case d'arrivee en temps
     * minimal
     */
     public void afficherTrajet(LinkedList<Case> trajet){

@@ -20,6 +20,7 @@ public class LecteurDonnees {
      */
     public static DonneesSimulation lire(String fichierDonnees)
         throws FileNotFoundException, DataFormatException {
+        System.out.println(fichierDonnees.equals("cartes/spiralOfMadness-50x50.map"));
         LecteurDonnees lecteur = new LecteurDonnees(fichierDonnees);
         Carte carte = lecteur.lireCarte();
         Incendie incendies[];
@@ -28,7 +29,9 @@ public class LecteurDonnees {
         robots = lecteur.lireRobots();
         scanner.close();
         DonneesSimulation donneesSimulation = new DonneesSimulation(carte, incendies, robots, fichierDonnees);
-        // System.out.println(donneesSimulation.afficher());
+        if (fichierDonnees.equals("cartes/spiralOfMadness-50x50.map")){
+            System.out.println("\fUn peu de patience, c'est un peu long sur cette carte. N'appuyez pas sur lecture");
+        }
         return donneesSimulation;
     }
 
