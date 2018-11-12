@@ -1,12 +1,13 @@
 package io;
 import io.*;
 
-/** 
+/**
  * Classe qui contient les etats possibles des robots
  */
 public enum Etat {
   OCCUPE ("OCCUPE"),
-  LIBRE ("LIBRE");
+  LIBRE ("LIBRE"),
+  INUTILE ("INUTILE");
 
   private String name = "";
 

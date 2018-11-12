@@ -109,7 +109,21 @@ public class DonneesSimulation{
          for (int len=0; len < this.getRobots().length; len++){
              this.getRobots()[len].setLigne(nouvelle.getRobots()[len].getLigne());
              this.getRobots()[len].setColonne(nouvelle.getRobots()[len].getColonne());
-             this.getRobots()[len].setReservoir(nouvelle.getRobots()[len].getReservoir());
+             switch(this.getRobots()[len].getTypeRobot()){
+                 case DRONE:
+                    this.getRobots()[len].setReservoir(10000);
+                    break;
+                 case ROUES:
+                    this.getRobots()[len].setReservoir(5000);
+                    break;
+                 case CHENILLES:
+                    this.getRobots()[len].setReservoir(2000);
+                    break;
+                default:
+                    System.out.println("V");
+             }
+             this.getRobots()[len].setReservoir(2000);
+            //  this.getRobots()[len].setEtat(nouvelle.getRobots()[len].getEtat());
          }
          for (int len=0; len < this.getIncendies().length; len++){
              this.getIncendies()[len].setIntensite(nouvelle.getIncendies()[len].getIntensite());
