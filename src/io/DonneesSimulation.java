@@ -122,7 +122,6 @@ public class DonneesSimulation{
                 default:
                     System.out.println("V");
              }
-             this.getRobots()[len].setReservoir(2000);
             //  this.getRobots()[len].setEtat(nouvelle.getRobots()[len].getEtat());
          }
          for (int len=0; len < this.getIncendies().length; len++){
