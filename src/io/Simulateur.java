@@ -147,7 +147,7 @@ public class Simulateur implements Simulable {
       Carte cart = this.donnees.getCarte();
       int nb_lignes = cart.getNbLignes();
       int nb_colonnes = cart.getNbColonnes();
-      int taille_ecran = 500;
+      int taille_ecran = 800;
       int taille_cases = taille_ecran/Math.max(nb_colonnes, nb_lignes);
       this.gui.reset();
 

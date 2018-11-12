@@ -326,9 +326,15 @@ public abstract class Robot {
 /**
  * vide le robot de l'intensite voulue
  */
-public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
+public double Vider(Simulateur simu,  int ligne, int colonne, double intensite, boolean boo){
     double volume = 0;
-    Case C = simu.getPosition(this);
+    Case C;
+    if (boo){
+        C = simu.getPosition(this);
+    }
+    else{
+        C = simu.donnees.getCarte().getTableauDeCases()[simu.donnees.getCarte().getNbColonnes() * this.getLigne() + this.getColonne()];
+    }
     switch (this.getTypeRobot()) {
       case ROUES:
         Robotaroues Robot_roue = new Robotaroues(this.getLigne(), this.getColonne(), this.getVitesse());

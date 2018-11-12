@@ -28,7 +28,7 @@ public class EvenementDeverserEau extends Evenement {
       throw new IllegalArgumentException(robot + " ne peut pas faire d'intervention ici");
     }
 
-    double volume = robot.Vider(super.getSimu(), ligne, colonne, intensite);
+    double volume = robot.Vider(super.getSimu(), ligne, colonne, intensite, true);
     if (volume == 0){
       return;
     }
@@ -53,11 +53,10 @@ public class EvenementDeverserEau extends Evenement {
       double intensite = incendie.getIntensite();
       double reservoir = super.getSimu().getReservoir(robot);
       if (intensite == 0){
-        // robot.setEtat(Etat.LIBRE);
         throw new IllegalArgumentException(robot + " ne peut pas faire d'intervention ici");
       }
 
-      double volume = robot.Vider(super.getSimu(), ligne, colonne, intensite);
+      double volume = robot.Vider(super.getSimu(), ligne, colonne, intensite, false);
       if (volume == 0){
         return;
       }

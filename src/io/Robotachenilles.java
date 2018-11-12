@@ -1,11 +1,11 @@
 package io;
 /**
- * Classe gerant le comportement du robot a chenilles 
+ * Classe gerant le comportement du robot a chenilles
  */
 public class Robotachenilles extends Robot {
 
-  /** 
-   * Constucteur de la classe 
+  /**
+   * Constucteur de la classe
    */
   public Robotachenilles(int lig, int col, double vitesse_deplacement){
     super(lig, col, vitesse_deplacement);
@@ -41,8 +41,8 @@ public class Robotachenilles extends Robot {
     return 5*60;
   }
 
-/** 
- * test si le robot est bien place pour se remplir 
+/**
+ * test si le robot est bien place pour se remplir
  */
   public boolean testRemplir(Simulateur simu, int lig, int col){
       boolean test1 = (simu.getPosition(this).getLigne() == lig+1)&&(simu.getPosition(this).getColonne() == col);
@@ -71,20 +71,20 @@ public class Robotachenilles extends Robot {
       }
   }
 
-  public int vider(Simulateur simu, int ligne, int colonne, double intensite, Case C){
+  public double vider(Simulateur simu, int ligne, int colonne, double intensite, Case C){
     if (testVider(simu, ligne, colonne, C)){
         if (intensite >= super.getReservoir()){
             return 20*100;
         }
         else{
-            return (int)intensite;
+            return intensite;
         }
     }
     return 0;
   }
 
-/** 
- * test si le robot peut se vider sur cette case 
+/**
+ * test si le robot peut se vider sur cette case
  */
   public boolean testVider(Simulateur simu, int lig, int col, Case C){
     Incendie[] incendies = simu.donnees.getIncendies();
