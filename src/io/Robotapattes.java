@@ -1,7 +1,7 @@
 package io;
 
 /** 
- * Classe gerant les comportement des robots à pattes
+ * Classe gerant les comportement des robots a pattes
  */
 public class Robotapattes extends Robot {
 

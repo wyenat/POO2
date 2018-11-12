@@ -1,7 +1,7 @@
 package io;
 
 /** 
- * Classe gérant les comportements des robots à roues 
+ * Classe gerant les comportements des robots a roues 
  */
 public class Robotaroues extends Robot {
   /** 
@@ -44,7 +44,7 @@ public class Robotaroues extends Robot {
   }
 
 /** 
- * test si le robot à roues peut se remplir ici 
+ * test si le robot a roues peut se remplir ici 
  */
   public boolean testRemplir(Simulateur simu, int lig, int col){
       boolean test1 = (simu.getPosition(this).getLigne() == lig+1)&&(simu.getPosition(this).getColonne() == col);

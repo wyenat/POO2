@@ -15,8 +15,8 @@ import gui.Simulable;
 import gui.Text;
 
 /**
- * Classe contenant toutes les donnees pour la simulation. 
- * Depuis cette classe, on peut acceder à toutes les autres 
+ * Classe contenant toutes les donnees pour la simulation.
+ * Depuis cette classe, on peut acceder a toutes les autres
  */
 public class Simulateur implements Simulable {
 
@@ -35,7 +35,7 @@ public class Simulateur implements Simulable {
     *  Les les donnees dans data, et cree la simulation associee.
     */
     public Simulateur(DonneesSimulation data) {
-        gui.setSimulable(this);	
+        gui.setSimulable(this);
         this.donnees = data;
         this.time = 0;
         this.pas = 1 + this.donnees.getCarte().getTailleCases()/500;
@@ -51,8 +51,8 @@ public class Simulateur implements Simulable {
         draw();
     }
 
-    /** 
-    * Trouve dans la liste des evènements ceux dont la date est passee,
+    /**
+    * Trouve dans la liste des evenements ceux dont la date est passee,
     * et les execute
     */
     public void executeEvenements(){
@@ -67,14 +67,14 @@ public class Simulateur implements Simulable {
     }
 
     /**
-    * Ajoute un evènement
+    * Ajoute un evenement
     */
     public void addEvenement(Evenement e){
          this.evenements.add(e);
     }
 
     /**
-    * Affiche les Evenements dans le tableau d'evènements
+    * Affiche les Evenements dans le tableau d'evenements
     */
     public void AfficherEvenements(){
          Iterator<Evenement> iter = evenements.iterator();
@@ -87,7 +87,7 @@ public class Simulateur implements Simulable {
     }
 
     /**
-    * Retourne true s'il n'y a plus d'evènements en cours
+    * Retourne true s'il n'y a plus d'evenements en cours
     */
     private boolean simulationTerminee(){
          Iterator<Evenement> iter = evenements.iterator();
@@ -97,7 +97,7 @@ public class Simulateur implements Simulable {
                  return false;
              }
          }
-         System.out.println("Simulation terminee");
+        //  System.out.println("Simulation terminee");
          return true;
     }
 
@@ -111,6 +111,9 @@ public class Simulateur implements Simulable {
        }
        else{
           this.time += this.pas;
+        //   if (this.time %20 == 0){
+        //   System.out.println(this.time);
+        //     }
           executeEvenements();
           draw();
       }
@@ -127,6 +130,7 @@ public class Simulateur implements Simulable {
           DonneesSimulation data_init = LecteurDonnees.lire(this.donnees.fichier);
           this.donnees.RemettreInitial(data_init);
           draw();
+          AfficherEvenements();
       }
       catch (FileNotFoundException e) {
           System.out.println("fichier " + this.donnees.fichier+ " inconnu ou illisible");
@@ -137,7 +141,7 @@ public class Simulateur implements Simulable {
 
 
     /**
-    * Dessine la simulation dans l'interface graphique 
+    * Dessine la simulation dans l'interface graphique
     */
     private void draw(){
       Carte cart = this.donnees.getCarte();
@@ -177,7 +181,7 @@ public class Simulateur implements Simulable {
     }
 
     /**
-    * Met le robot à la case rentree
+    * Met le robot a la case rentree
     */
     public void setPosition(Robot robot, Case C){
         for (int i = 0; i<this.donnees.getRobots().length; i++){
@@ -189,8 +193,8 @@ public class Simulateur implements Simulable {
         }
     }
 
-    /** 
-    * Retourne le reservoir du robot 
+    /**
+    * Retourne le reservoir du robot
     */
     public double getReservoir(Robot robot){
         double volume=0;

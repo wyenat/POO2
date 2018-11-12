@@ -11,9 +11,9 @@ import gui.Text;
 
 public class TestInvader {
     public static void main(String[] args) {
-        // crée la fenêtre graphique dans laquelle dessiner
+        // cree la fenêtre graphique dans laquelle dessiner
         GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
-        // crée l'invader, en l'associant à la fenêtre graphique précédente
+        // cree l'invader, en l'associant a la fenêtre graphique precedente
         Invader invader = new Invader(gui, Color.decode("#f2ff28"));
     }
 }
@@ -21,14 +21,14 @@ public class TestInvader {
 
 /**
  * Un mini-invader...
- * cet objet est associé à une fenêtre graphique GUISimulator, dans laquelle
+ * cet objet est associe a une fenêtre graphique GUISimulator, dans laquelle
  * il peut se dessiner.
- * De plus il hérite de Simulable, donc il définit deux méthodes next() et 
- * restart() invoquées par la fenêtre graphique de simulation selon les
- * commandes entrées par l'utilisateur.
+ * De plus il herite de Simulable, donc il definit deux methodes next() et 
+ * restart() invoquees par la fenêtre graphique de simulation selon les
+ * commandes entrees par l'utilisateur.
  */
 class Invader implements Simulable {
-    /** L'interface graphique associée */
+    /** L'interface graphique associee */
     private GUISimulator gui;	
 
     /** La couleur de dessin de l'invader */
@@ -37,19 +37,19 @@ class Invader implements Simulable {
     /** Abcisse courante de l'invader (bord gauche) */
     private int x;
 
-    /** Ordonnée courante de l'invader (bord supérieur) */
+    /** Ordonnee courante de l'invader (bord superieur) */
     private int y;
 
-    /** Itérateur sur les abcisses de l'invader au cours du temps */
+    /** Iterateur sur les abcisses de l'invader au cours du temps */
     private Iterator<Integer> xIterator;
 
-    /** Itérateur sur les ordonnées de l'invader au cours du temps */
+    /** Iterateur sur les ordonnees de l'invader au cours du temps */
     private Iterator<Integer> yIterator;
 
     /**
-     * Crée un Invader et le dessine.
-     * @param gui l'interface graphique associée, dans laquelle se fera le
-     * dessin et qui enverra les messages via les méthodes héritées de
+     * Cree un Invader et le dessine.
+     * @param gui l'interface graphique associee, dans laquelle se fera le
+     * dessin et qui enverra les messages via les methodes heritees de
      * Simulable.
      * @param color la couleur de l'invader
      */
@@ -63,7 +63,7 @@ class Invader implements Simulable {
     }
 
     /**
-     * Programme les déplacements de l'invader. 
+     * Programme les deplacements de l'invader. 
      */
     private void planCoordinates() {
         // panel must be large enough... unchecked here!

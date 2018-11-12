@@ -16,12 +16,12 @@ public class TestScenario0 {
           // Mise en place du robot
           Robot drone = simu.donnees.GetRobots()[0];
 
-          // Mise en place des évenements;
+          // Mise en place des evenements;
           for (int i=0; i<4; i++){
               Evenementdeplacement premierDeplacer = new Evenementdeplacement(simu, drone, dir);
             }
         }
-        // Partie levée d'exception
+        // Partie levee d'exception
         catch (FileNotFoundException e) {
           System.out.println("fichier " + args[0] + " inconnu ou illisible");
         } catch (DataFormatException e) {

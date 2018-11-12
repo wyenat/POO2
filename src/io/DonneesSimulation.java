@@ -3,8 +3,8 @@ package io;
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
 
-/** 
- * Classe qui contient les donnees contenues dans le .map  
+/**
+ * Classe qui contient les donnees contenues dans le .map
  */
 public class DonneesSimulation{
 
@@ -26,42 +26,42 @@ public class DonneesSimulation{
      }
 
 /**
- * Setter de case 
+ * Setter de case
  */
      public void setCarte(Carte c){
          this.carte =c ;
      }
 
 /**
- * Setter d'incendie 
+ * Setter d'incendie
  */
      public void setIncendies(Incendie i[]){
          this.incendies = i;
      }
 
-/** 
- * Setter de robot 
+/**
+ * Setter de robot
  */
      public void setRobot(Robot r[]){
          this.robots = r;
      }
 
-/** 
- * Retourne la carte 
+/**
+ * Retourne la carte
  */
      public Carte getCarte(){
          return this.carte;
      }
 
-/** 
- * retourne la liste des incendies 
+/**
+ * retourne la liste des incendies
  */
      public Incendie[] getIncendies(){
          return this.incendies;
      }
 
-/** 
- * Retourne la liste des robots 
+/**
+ * Retourne la liste des robots
  */
      public Robot[] getRobots(){
          return this.robots;
@@ -102,7 +102,7 @@ public class DonneesSimulation{
     }
 
     /**
-    * Mets les paramètres Robots et Incendie de this aux etats de nouvelle
+    * Mets les parametres Robots et Incendie de this aux etats de nouvelle
     * SANS MODIFIER l'adresse des robots ou des incendies
     */
     public void RemettreInitial(DonneesSimulation nouvelle){

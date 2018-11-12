@@ -1,6 +1,6 @@
 /**
-Fichier à modifier pour faire l'affichage !
-On veut crééer une classe qui réalise l'interface Simulable
+Fichier a modifier pour faire l'affichage !
+On veut creeer une classe qui realise l'interface Simulable
 (Simulateur implements Simulable)
 
 

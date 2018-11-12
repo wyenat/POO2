@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 
 /**
-* Cette classe gère les evènements qui se deroulent au cours de la simulation
+* Cette classe gere les evenements qui se deroulent au cours de la simulation
 */
 public abstract class Evenement{
   protected Robot robot;
@@ -13,7 +13,7 @@ public abstract class Evenement{
 
 
   /**
-  * Constructeur de la classe Evenement 
+  * Constructeur de la classe Evenement
   */
 public Evenement(Robot robot, Simulateur simulation, long dateFin, TypeEvenement type){
     this.simu = simulation;
@@ -22,10 +22,10 @@ public Evenement(Robot robot, Simulateur simulation, long dateFin, TypeEvenement
     this.robot.setEtat(Etat.OCCUPE);
     this.typeEvenement = type;
   }
-  
+
 
   /**
-  * Execute l'evènement.
+  * Execute l'evenement.
   */
   public void execute(){
        long dateMax = 0;
@@ -42,17 +42,17 @@ public Evenement(Robot robot, Simulateur simulation, long dateFin, TypeEvenement
           this.getRobot().setEtat(Etat.LIBRE);
        }
   }
-  
-  
+
+
   @Override
   public String toString(){
       return "Evenement : date de fin = " + this.getDate() + ", de type : ";
   }
-  
-  // sets & gets 
-  
+
+  // sets & gets
+
   /**
-  * Calcule la date d'execution de l'evènement 
+  * Calcule la date d'execution de l'evenement
   */
   public void setDate(long Date){
       long dateMax = 0;
@@ -68,43 +68,43 @@ public Evenement(Robot robot, Simulateur simulation, long dateFin, TypeEvenement
       this.dateFin = Date + dateMax;
   }
 
-/** 
+/**
  * retourne la simulation
  */
   public Simulateur getSimu(){
       return this.simu;
   }
- 
-/** 
+
+/**
  * setter de simulation
  */
   public void setSimu(Simulateur simulateur){
       this.simu = simulateur;
   }
-  
+
 /**
- * retourne le robot concerne par l'evenement 
+ * retourne le robot concerne par l'evenement
  */
   public Robot getRobot(){
       return this.robot;
   }
 
 /**
- * retourne la date a laquelle s'execute l'evenement 
+ * retourne la date a laquelle s'execute l'evenement
  */
   public long getDate(){
     return this.dateFin;
   }
 
 /**
- * retourne le type de l'evenement 
+ * retourne le type de l'evenement
  */
   public TypeEvenement getTypeEvenement(){
       return this.typeEvenement;
   }
 
 /**
- * setter du type d'evenement 
+ * setter du type d'evenement
  */
   public void setTypeEvenement(TypeEvenement type){
       this.typeEvenement = type;

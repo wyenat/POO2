@@ -4,7 +4,7 @@ package io;
 
 public class Carte{
     /**
-     * Contient les données de la carte
+     * Contient les donnees de la carte
      */
 
      private int tailleCases;
@@ -14,7 +14,7 @@ public class Carte{
 
      public Carte(int tailleC, int nbL, int nbC){
          /**
-          * Crée une carte de taille nbL*nbC dont les cases sont de taille tailleC
+          * Cree une carte de taille nbL*nbC dont les cases sont de taille tailleC
           */
          this.SetTailleCases(tailleC);
          this.SetNbLignes(nbL);
@@ -23,11 +23,11 @@ public class Carte{
      }
 
      public void SetTailleCases(int taille){
-         /* Définit la taille des cases.
+         /* Definit la taille des cases.
           *Invariant de classe : taille > 0
           */
           if (taille <= 0){
-              throw new IllegalArgumentException("Taille des cases nulle ou négative !");
+              throw new IllegalArgumentException("Taille des cases nulle ou negative !");
           }
           this.tailleCases = taille;
      }
@@ -40,11 +40,11 @@ public class Carte{
      }
 
      public void SetNbLignes(int taille){
-         /* Définit le nombre de lignes.
+         /* Definit le nombre de lignes.
           *Invariant de classe : NbLignes > 0
           */
           if (taille <= 0){
-              throw new IllegalArgumentException("Nombre de lignes nul ou négatif !");
+              throw new IllegalArgumentException("Nombre de lignes nul ou negatif !");
           }
           this.NbLignes = taille;
      }
@@ -57,11 +57,11 @@ public class Carte{
      }
 
      public void SetNbColonnes(int taille){
-         /* Définit le nombre de Colonnes.
+         /* Definit le nombre de Colonnes.
           *Invariant de classe : NbColonnes > 0
           */
           if (taille <= 0){
-              throw new IllegalArgumentException("Nombre de Colonnes nul ou négatif !");
+              throw new IllegalArgumentException("Nombre de Colonnes nul ou negatif !");
           }
           this.nb_colonnes = taille;
      }
@@ -81,10 +81,10 @@ public class Carte{
      }
 
     //  public int voisinExiste(Case C, dir direction){
-    //    /*Renvoie 1 s'il a un voisin dans la direction donnée*/
+    //    /*Renvoie 1 s'il a un voisin dans la direction donnee*/
     //       switch(direction){
     //         /*Fais un case sur la direction
-    //         On vérifie qu'on ne depasse pas */
+    //         On verifie qu'on ne depasse pas */
     //           case "NORD":
     //             if (C.ligne -1 >= 0){
     //               return 1;
@@ -125,10 +125,10 @@ public class Carte{
      //}
 
     //  public int GetVoisin(Case C, dir direction){
-    //       /*Renvoie le voisin de la case C dans la direction donnée*/
+    //       /*Renvoie le voisin de la case C dans la direction donnee*/
     //       if (voisinExiste(C, direction)){
      //
-    //         /*On vérifie quand même que ce voisin existe*/
+    //         /*On verifie quand même que ce voisin existe*/
     //         int ligne = C.GetLigne();
     //         int colonne = C.GetColonne();
     //         Case[] Tableau = this.GetTableauDeCases();

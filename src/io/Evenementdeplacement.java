@@ -52,6 +52,6 @@ public class Evenementdeplacement extends Evenement {
 
     @Override
     public String toString(){
-        return super.toString() + "Déplacement : le Robot" + (super.getRobot()).toString() + " va vers " + this.getDirection();
+        return super.toString() + "Deplacement : le Robot" + (super.getRobot()).toString() + " va vers " + this.getDirection();
     }
   }

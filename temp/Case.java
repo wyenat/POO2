@@ -5,7 +5,7 @@ package io;
 
 public class Case{
     /**
-     * Contient les données d'une case
+     * Contient les donnees d'une case
      * On rajouter les invariants de classe :
      * 0 < ligne < NbLignes et 0 < colonne < nbColonnes
      */

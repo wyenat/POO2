@@ -5,7 +5,7 @@ package io;
 
 public class Incendie{
     /**
-     * Contient les données d'un incendie:
+     * Contient les donnees d'un incendie:
         -position
         -force
      */
@@ -14,7 +14,7 @@ public class Incendie{
      private double intensite;
 
      public int GetLigneIncendie(){
-       /* Permet la recupération de la ligne*/
+       /* Permet la recuperation de la ligne*/
        return this.ligne;
      }
 
@@ -26,7 +26,7 @@ public class Incendie{
 
 
      public int GetColonneIncendie(){
-       /* Permet la recupération de la colonne*/
+       /* Permet la recuperation de la colonne*/
        return this.colonne;
      }
 
@@ -37,7 +37,7 @@ public class Incendie{
      }
 
      public int GetIntensite(){
-       /* Permet la recupération de l'intensité*/
+       /* Permet la recuperation de l'intensite*/
        return this.intensite;
      }
 
@@ -48,7 +48,7 @@ public class Incendie{
           this.intensite = intensite;
         }
         else{
-          throw new IllegalArgumentException("Une intensité ne peut être negative");
+          throw new IllegalArgumentException("Une intensite ne peut être negative");
         }
 
      }

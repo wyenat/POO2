@@ -16,7 +16,7 @@ public class TestRobot {
         //
 
         //Robot construit avec Robot a roues mais de type Robot,
-        //on en crée un du bon type
+        //on en cree un du bon type
         Robot BOB = new Robotaroues(0, 0 ,10);
         switch (BOB.GetTypeRobot()) {
             case ROUES:

@@ -15,7 +15,7 @@ public class TestScenario1 {
 
           // System.out.println(46/5);
 
-          // Mise en place des évenements;
+          // Mise en place des evenements;
           Evenementdeplacement premierDeplacer = new Evenementdeplacement(simu, roues, Direction.NORD);
           // intervention
           EvenementDeverserEau vider = new EvenementDeverserEau(simu, roues);
@@ -37,7 +37,7 @@ public class TestScenario1 {
 
 
       }
-      // Partie levée d'exception
+      // Partie levee d'exception
       catch (FileNotFoundException e) {
         System.out.println("fichier " + args[0] + " inconnu ou illisible");
       } catch (DataFormatException e) {

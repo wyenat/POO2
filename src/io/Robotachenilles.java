@@ -1,6 +1,6 @@
 package io;
 /**
- * Classe gerant le comportement du robot à chenilles 
+ * Classe gerant le comportement du robot a chenilles 
  */
 public class Robotachenilles extends Robot {
 

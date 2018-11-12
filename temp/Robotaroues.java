@@ -4,7 +4,7 @@ package io;
 
 public class Robotaroues extends Robot{
 
-    /* Attributs relatifs aux robots à roues et fonctions associées*/
+    /* Attributs relatifs aux robots a roues et fonctions associees*/
 
     public Robotaroues()
          {
@@ -27,7 +27,7 @@ public class Robotaroues extends Robot{
     // public double getVitesse(NatureTerrain Nature){
     //   /* On regarde la vitesse du robot sur un type de terrain particulier*/
     //   if (Nature == "TERRAIN LIBRE" ||  Nature == "HABITAT"){
-    //     /*On vérifie qu'il puisse aller sur ce terrain*/
+    //     /*On verifie qu'il puisse aller sur ce terrain*/
     //     return this.vitesse;
     //   }
     //   else{
@@ -37,7 +37,7 @@ public class Robotaroues extends Robot{
     //
     // public void deverserEau(double volume){
     //   if (Volume >= this.capacite_reservoir) {
-    //     /*On vérifie qu'il puisse verser autant de litres*/
+    //     /*On verifie qu'il puisse verser autant de litres*/
     //     this.capacite_reservoir -= Volume;
     //   }
     //   else{

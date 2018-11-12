@@ -10,7 +10,7 @@ import gui.Text;
 
 public class TestInterfaceGraphique{
     /**
-     * Cette classe sert à modéliser le terrain et à l'animer
+     * Cette classe sert a modeliser le terrain et a l'animer
      */
         public static void main(String[] args) {
             GUISimulator gui = new GUISimulator(800, 600, Color.WHITE);

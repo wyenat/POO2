@@ -11,9 +11,9 @@ public class LectureDonneesSimulateur {
     /**
      * Lit et simule le contenu d'un fichier de donnees (cases,
      * robots et incendies).
-     * Ceci est méthode de classe; utilisation:
+     * Ceci est methode de classe; utilisation:
      * LecteurDonnees.lire(fichierDonnees)
-     * @param fichierDonnees nom du fichier à lire
+     * @param fichierDonnees nom du fichier a lire
      */
 
     public static DonneesSimulateur lire(String fichierDonnees)
@@ -210,8 +210,8 @@ public class LectureDonneesSimulateur {
 
 private static int VitesseDefaut(TypeRobot type){
     /**
-     * Renvoie la vitesse par défaut du robot si elle n'est pas
-     * précisée dans le .map
+     * Renvoie la vitesse par defaut du robot si elle n'est pas
+     * precisee dans le .map
      */
      int vitesseDefaut;
      switch(type){

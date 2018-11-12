@@ -5,7 +5,7 @@ package io;
 
 public class Robot{
 
-    /* Attributs communs à tous les robots et fonctions associées*/
+    /* Attributs communs a tous les robots et fonctions associees*/
     private String type;
     private Case position;
     private int vitesse_deplacement;

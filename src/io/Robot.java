@@ -2,8 +2,6 @@ package io;
 import gui.*;
 import java.awt.*;
 
-import io.TypeRobot;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,6 +12,9 @@ import gui.Rectangle;
 import gui.Simulable;
 import gui.Text;
 
+/**
+* Cette classe gere toutes les donnees propres aux robots
+*/
 public abstract class Robot {
   private int ligne;
   private int colonne;
@@ -23,7 +24,7 @@ public abstract class Robot {
   private Etat etat;
 
 /**
- * Cette classe gere toutes les donnees propres aux robots 
+ * Constructeur de la clase
  */
   public Robot(int lig, int col, double vitesse_deplacement){
     this.ligne = lig;
@@ -35,63 +36,63 @@ public abstract class Robot {
 
 // sets & gets
 /**
- * retourne la ligne du robot 
+ * retourne la ligne du robot
  */
     public int getLigne(){
         return this.ligne;
     }
 
-/** 
- * retourne la colonne du robot 
+/**
+ * retourne la colonne du robot
  */
     public int getColonne(){
         return this.colonne;
     }
 
-/** 
- * retourne l'etat du robot 
+/**
+ * retourne l'etat du robot
  */
     public Etat getEtat(){
         return this.etat;
     }
 
 /**
- * setter de l'etat du robot 
+ * setter de l'etat du robot
  */
     public void setEtat(Etat etat){
         this.etat = etat;
     }
 
-/** 
- * setter de la ligne du robot 
+/**
+ * setter de la ligne du robot
  */
     public void setLigne(int ligne){
         this.ligne = ligne;
     }
 
-/** 
- * setter de la colonne du robot 
+/**
+ * setter de la colonne du robot
  */
     public void setColonne(int colonne){
         this.colonne = colonne;
     }
 
-/** 
+/**
  * retourne la vitesse du robot
  */
     public double getVitesse(){
       return this.vitesse_deplacement;
     }
 
-/** 
- * retourne le reservoir du robot 
+/**
+ * retourne le reservoir du robot
  */
     public double getReservoir(){
       return this.reservoir;
     }
-    
-/** 
- * setter du reservoir du robot 
+
+/**
+ * setter du reservoir du robot
  */
     public void setReservoir(double reservoir){
         if (reservoir >= 0){
@@ -99,18 +100,18 @@ public abstract class Robot {
 
         }
         else {
-            throw new IllegalArgumentException(" remplir par un truc négatif ça c'est erreur" + reservoir +  this);
+            throw new IllegalArgumentException(" remplir par un truc negatif ça c'est erreur" + reservoir +  this);
         }
     }
 
 /**
- * sette de la vitesse du robot 
+ * sette de la vitesse du robot
  */
     public void setVitesse(double vitesse){
         this.vitesse_deplacement = vitesse;
     }
 
-/** 
+/**
  * setter de la position du robot
  */
     public void setPosition(Case Case){
@@ -146,8 +147,8 @@ public abstract class Robot {
     }
 
 // fin sets & gets
-    
-/** 
+
+/**
  * renvoie true si le robot peut se rendre sur la case, false sinon
  */
     public boolean test_deplacement(Case C){
@@ -180,21 +181,21 @@ public abstract class Robot {
     }
 
 /**
- * retourne le type du robot 
+ * retourne le type du robot
  */
     public TypeRobot getTypeRobot(){
       return this.type;
     }
 
-/** 
- * setter du type du robot 
+/**
+ * setter du type du robot
  */
     public void setTypeRobot(TypeRobot T){
       this.type = T;
     }
 
-/** 
- * dessine le robot dans l'interface graphique 
+/**
+ * dessine le robot dans l'interface graphique
  */
     public void draw_robot(GUISimulator gui, int taille_case){
       int x = taille_case/5 + (this.getLigne())* taille_case;
@@ -216,8 +217,8 @@ public abstract class Robot {
       }
     }
 
-/** 
- * retourne la date de fin de vidage du robot 
+/**
+ * retourne la date de fin de vidage du robot
  */
     public long getDatevider(Simulateur simu){
         double volume = 0;
@@ -259,8 +260,8 @@ public abstract class Robot {
       return Date;
     }
 
-/** 
- * retourne la date de fin de remplissage du robot 
+/**
+ * retourne la date de fin de remplissage du robot
  */
     public long getDateremplir(){
       long Date = 0;
@@ -276,7 +277,7 @@ public abstract class Robot {
           break;
 
         case PATTES:
-          throw new IllegalArgumentException("On ne peut pas remplir le reservoir d'un robot à pattes");
+          throw new IllegalArgumentException("On ne peut pas remplir le reservoir d'un robot a pattes");
 
 
         case DRONE:
@@ -291,8 +292,8 @@ public abstract class Robot {
       return Date;
     }
 
-/** 
- * remplit le reservoir du robot 
+/**
+ * remplit le reservoir du robot
  */
     public double remplirReservoir(Simulateur simu, int ligne, int colonne){
         double volume = 0;
@@ -308,7 +309,7 @@ public abstract class Robot {
                 break;
 
             case PATTES:
-                throw new IllegalArgumentException("On ne peut pas remplir le reservoir d'un robot à pattes");
+                throw new IllegalArgumentException("On ne peut pas remplir le reservoir d'un robot a pattes");
 
             case DRONE:
                 Robotdrone Robot_drone = new Robotdrone(this.getLigne(), this.getColonne(), this.getVitesse());
@@ -322,8 +323,8 @@ public abstract class Robot {
         return volume;
       }
 
-/** 
- * vide le robot de l'intensite voulue 
+/**
+ * vide le robot de l'intensite voulue
  */
 public double Vider(Simulateur simu,  int ligne, int colonne, double intensite){
     double volume = 0;

@@ -15,7 +15,7 @@ public class TestChemin {
           Chemin route = new Chemin(depart, arrivee, robot, simu);
           route.deplacement();
         }
-          // Partie levée d'exception
+          // Partie levee d'exception
           catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");
           } catch (DataFormatException e) {

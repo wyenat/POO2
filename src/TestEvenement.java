@@ -63,7 +63,7 @@ public class TestEvenement {
            Evenementdeplacement d = new Evenementdeplacement(simu, roues, ouest);
         }
 
-        // Partie levée d'exception
+        // Partie levee d'exception
         catch (FileNotFoundException e) {
           System.out.println("fichier " + args[0] + " inconnu ou illisible");
         } catch (DataFormatException e) {

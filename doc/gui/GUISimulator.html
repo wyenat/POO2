@@ -143,18 +143,18 @@ extends javax.swing.JFrame</pre>
 <div class="block">Cette classe est une fenêtre graphique permettant d'afficher et de contrôler
  une simulation.
  <p>
- La fenêtre contient un panneau d'affichage sur lequel des éléments graphiques
- peuvent être placés.
+ La fenêtre contient un panneau d'affichage sur lequel des elements graphiques
+ peuvent être places.
  <p>
  Cette classe est aussi munie de boutons de contrôle d'une simulation. Elle
- est associée à un simulateur, objet de type <code>Simulable</code>, avec
- lequel elle interagit en réponse aux interactions de l'utilisateur:
+ est associee a un simulateur, objet de type <code>Simulable</code>, avec
+ lequel elle interagit en reponse aux interactions de l'utilisateur:
  <ul>
- <li>la méthode <code>next()</code> de ce simulateur est invoquée suite à un
- clic sur le bouton Suivant de l'interface graphique, ou bien à intervalles
- réguliers si la lecture a été démarrée.</li>
- <li>la méthode <code>restart()</code> est elle invoquée suite
- à un clic sur le bouton Début.</li>
+ <li>la methode <code>next()</code> de ce simulateur est invoquee suite a un
+ clic sur le bouton Suivant de l'interface graphique, ou bien a intervalles
+ reguliers si la lecture a ete demarree.</li>
+ <li>la methode <code>restart()</code> est elle invoquee suite
+ a un clic sur le bouton Debut.</li>
  </ul></div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -267,8 +267,8 @@ extends javax.swing.JFrame</pre>
 <td class="colOne"><code><span class="memberNameLink"><a href="../gui/GUISimulator.html#GUISimulator-int-int-java.awt.Color-">GUISimulator</a></span>(int&nbsp;width,
             int&nbsp;height,
             java.awt.Color&nbsp;bgColor)</code>
-<div class="block">Crée une nouvelle fenêtre graphique ne contenant qu'un panneau
- d'affichage d'une taille fixée par les arguments.</div>
+<div class="block">Cree une nouvelle fenêtre graphique ne contenant qu'un panneau
+ d'affichage d'une taille fixee par les arguments.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -276,9 +276,9 @@ extends javax.swing.JFrame</pre>
             int&nbsp;height,
             java.awt.Color&nbsp;bgColor,
             <a href="../gui/Simulable.html" title="interface in gui">Simulable</a>&nbsp;simulator)</code>
-<div class="block">Crée une nouvelle fenêtre graphique contenant un panneau
- d'affichage d'une taille fixée par les arguments, et associée
- à un objet Simulable qui répondra aux évènement next et restart.</div>
+<div class="block">Cree une nouvelle fenêtre graphique contenant un panneau
+ d'affichage d'une taille fixee par les arguments, et associee
+ a un objet Simulable qui repondra aux evenement next et restart.</div>
 </td>
 </tr>
 </table>
@@ -299,7 +299,7 @@ extends javax.swing.JFrame</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../gui/GUISimulator.html#addGraphicalElement-gui.GraphicalElement-">addGraphicalElement</a></span>(<a href="../gui/GraphicalElement.html" title="interface in gui">GraphicalElement</a>&nbsp;e)</code>
-<div class="block">Ajoute un élément graphique dans la zone de simulation.</div>
+<div class="block">Ajoute un element graphique dans la zone de simulation.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -317,13 +317,13 @@ extends javax.swing.JFrame</pre>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../gui/GUISimulator.html#reset--">reset</a></span>()</code>
-<div class="block">Enlève tous les éléments graphiques de la zone de simulation.</div>
+<div class="block">Enleve tous les elements graphiques de la zone de simulation.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../gui/GUISimulator.html#setSimulable-gui.Simulable-">setSimulable</a></span>(<a href="../gui/Simulable.html" title="interface in gui">Simulable</a>&nbsp;simulator)</code>
-<div class="block">Associe un objet Simulable à cette interface graphique.</div>
+<div class="block">Associe un objet Simulable a cette interface graphique.</div>
 </td>
 </tr>
 </table>
@@ -399,9 +399,9 @@ extends javax.swing.JFrame</pre>
 <pre>public&nbsp;GUISimulator(int&nbsp;width,
                     int&nbsp;height,
                     java.awt.Color&nbsp;bgColor)</pre>
-<div class="block">Crée une nouvelle fenêtre graphique ne contenant qu'un panneau
- d'affichage d'une taille fixée par les arguments. Aucun objet
- <code>Simulable</code> n'est attaché, les actions sur les boutons de
+<div class="block">Cree une nouvelle fenêtre graphique ne contenant qu'un panneau
+ d'affichage d'une taille fixee par les arguments. Aucun objet
+ <code>Simulable</code> n'est attache, les actions sur les boutons de
  contrôle n'auront aucun effet.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -421,15 +421,15 @@ extends javax.swing.JFrame</pre>
                     int&nbsp;height,
                     java.awt.Color&nbsp;bgColor,
                     <a href="../gui/Simulable.html" title="interface in gui">Simulable</a>&nbsp;simulator)</pre>
-<div class="block">Crée une nouvelle fenêtre graphique contenant un panneau
- d'affichage d'une taille fixée par les arguments, et associée
- à un objet Simulable qui répondra aux évènement next et restart.</div>
+<div class="block">Cree une nouvelle fenêtre graphique contenant un panneau
+ d'affichage d'une taille fixee par les arguments, et associee
+ a un objet Simulable qui repondra aux evenement next et restart.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>width</code> - la largeur du panneau d'affichage</dd>
 <dd><code>height</code> - la hauteur du panneau d'affichage</dd>
 <dd><code>bgColor</code> - la couleur de fond du panneau d'affichage</dd>
-<dd><code>simulator</code> - l'objet simulable associé à l'interface graphique</dd>
+<dd><code>simulator</code> - l'objet simulable associe a l'interface graphique</dd>
 </dl>
 </li>
 </ul>
@@ -448,7 +448,7 @@ extends javax.swing.JFrame</pre>
 <li class="blockList">
 <h4>setSimulable</h4>
 <pre>public&nbsp;void&nbsp;setSimulable(<a href="../gui/Simulable.html" title="interface in gui">Simulable</a>&nbsp;simulator)</pre>
-<div class="block">Associe un objet Simulable à cette interface graphique.</div>
+<div class="block">Associe un objet Simulable a cette interface graphique.</div>
 </li>
 </ul>
 <a name="getPanelWidth--">
@@ -478,7 +478,7 @@ extends javax.swing.JFrame</pre>
 <li class="blockList">
 <h4>addGraphicalElement</h4>
 <pre>public&nbsp;void&nbsp;addGraphicalElement(<a href="../gui/GraphicalElement.html" title="interface in gui">GraphicalElement</a>&nbsp;e)</pre>
-<div class="block">Ajoute un élément graphique dans la zone de simulation.</div>
+<div class="block">Ajoute un element graphique dans la zone de simulation.</div>
 </li>
 </ul>
 <a name="reset--">
@@ -488,7 +488,7 @@ extends javax.swing.JFrame</pre>
 <li class="blockList">
 <h4>reset</h4>
 <pre>public&nbsp;void&nbsp;reset()</pre>
-<div class="block">Enlève tous les éléments graphiques de la zone de simulation.</div>
+<div class="block">Enleve tous les elements graphiques de la zone de simulation.</div>
 </li>
 </ul>
 </li>

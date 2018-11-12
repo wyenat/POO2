@@ -2,7 +2,7 @@ package io;
 import io.*;
 
 /**
- * Classe gérant le comportement des robots drones 
+ * Classe gerant le comportement des robots drones 
  */
 public class Robotdrone extends Robot{
   /** 
