@@ -16,16 +16,14 @@ public class Robotapattes extends Robot {
 
   public double getVitesse(NatureTerrain Nature){
     double vitesse = super.getVitesse();
+    // System.out.println("")
     switch (Nature){
       case ROCHE:
-      vitesse-=10;
-      break;
-
-      case EAU:
-      vitesse = 0;
+      vitesse = 10;
       break;
 
       default:
+      vitesse = 30;
       break;
     }
     return vitesse;

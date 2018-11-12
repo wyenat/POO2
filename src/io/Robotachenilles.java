@@ -17,18 +17,11 @@ public class Robotachenilles extends Robot {
     double vitesse = super.getVitesse();
     switch (Nature){
         case FORET:
-          vitesse-=10;
-          break;
-
-        case EAU:
-          vitesse = 0;
-          break;
-
-        case ROCHE:
-          vitesse = 0;
+          if (vitesse > 50){vitesse/=2;}
           break;
 
         default:
+           if (vitesse < 50){vitesse *= 2;}
           break;
     }
 

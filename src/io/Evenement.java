@@ -30,8 +30,13 @@ public Evenement(Robot robot, Simulateur simulation, long dateFin, TypeEvenement
   public void execute(){
        long dateMax = 0;
        Iterator<Evenement> iter = simu.evenements.iterator();
-       while (iter.hasNext()){
-           Evenement eve = iter.next();
+       int taille = simu.evenements.size();
+       Evenement[] copie = new Evenement[taille];
+       for (int indice = 0; indice< taille; indice++){
+           copie[indice] = iter.next();
+       }
+       for (int indice = 0; indice < taille; indice++){
+           Evenement eve = copie[indice];
            if ( this.getRobot() == eve.getRobot()){
                if ( dateMax < eve.getDate()){
                  dateMax = eve.getDate();

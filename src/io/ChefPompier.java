@@ -90,11 +90,9 @@ public class ChefPompier {
       else {
           nombre_vidages = 1;
       }
-      System.out.println("nombre " + nombre_vidages + " intensite " + intensite + " incendie " + case_incendie + " robots " + chem.getRobot());
 
       Chemin retour = new Chemin(pointEau.getArrivee(), case_incendie, chem.getRobot(), this.simu);
       for (int i = 0; i<nombre_vidages; i++) {
-          System.out.println(" RESTE " + (intensite-(int)reservoir*(i+1)));
           EvenementDeverserEau vider = new EvenementDeverserEau(simu, chem.getRobot());
           if (chem.getRobot().getTypeRobot() != TypeRobot.PATTES){
               pointEau.deplacement();
@@ -213,11 +211,11 @@ public class ChefPompier {
                   intensite += this.simu.donnees.getIncendies()[i].getIntensite();
               }
               if (afficher){
-                  System.out.println(" Vous pouvez appuyer sur lecture ! :)");
+                  System.out.println(" Vous pouvez appuyer sur lecture ! ");
                   afficher = false;
               }
           }
-          System.out.println("Simulation Terminée ! :)");
+          System.out.println("Simulation Terminée après " + this.simu.time + "s");
       }
 
     }
