@@ -217,9 +217,6 @@ public class ChefPompier {
                   afficher = false;
               }
           }
-        //   for (int i=0; i < this.simu.donnees.getIncendies().length ; i++){
-        //       System.out.println("Incendie " + i + " : il reste " + this.simu.donnees.getIncendies()[i]);
-        //   }
           System.out.println("Simulation Terminée ! :)");
       }
 
